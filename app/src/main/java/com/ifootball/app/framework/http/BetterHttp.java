@@ -64,7 +64,10 @@ public class BetterHttp {
         httpClient.setRequestMethod(requestMethod);
         httpClient.setConnectTimeout(DEFAULT_CONNECTION_TIMEOUT);
         httpClient.setDoInput(true);
-        httpClient.setDoOutput(true);
+        if("POST".equals(requestMethod)) {
+            httpClient.setDoOutput(true);
+        }
+
         httpClient.setUseCaches(false);
         httpClient.setRequestProperty(USER_AGENT, defaultHeaders.get(USER_AGENT));
         httpClient.setRequestProperty(X_HIGHRESOLUTION, defaultHeaders.get(X_HIGHRESOLUTION));
@@ -73,10 +76,10 @@ public class BetterHttp {
 //        httpClient.setRequestProperty(X_NEWEGG_APP_ID, defaultHeaders.get(X_NEWEGG_APP_ID));
         if (isForm) {
             httpClient.setRequestProperty(CONTENT_TYPE, "application/x-www-form-urlencoded");
-        } else {
+        } else if("POST".equals(requestMethod)) {
             httpClient.setRequestProperty(CONTENT_TYPE, "application/json");
         }
-        HttpURLConnection.setFollowRedirects(false);
+//        HttpURLConnection.setFollowRedirects(false);
         return httpClient;
     }
 

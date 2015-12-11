@@ -53,8 +53,8 @@ public class MapActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         SDKInitializer.initialize(getApplicationContext());
+        super.onCreate(savedInstanceState);
         putContentView(R.layout.activity_map, "", true, true);
         TitleBarView titelView = (TitleBarView) findViewById(R.id.frg_map_titlebar);
         titelView.setViewData(

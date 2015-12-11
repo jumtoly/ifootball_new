@@ -19,8 +19,8 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 public class GreenService extends BaseService {
-    public VenueSearchResultInfo search(VenueSearchCriteria criteria)
-            throws IOException, JsonParseException, ServiceException {
+    public VenueSearchResultInfo search(int pageNumber, int pageSize, int citySysNo, String districtSysno, String category) throws IOException, JsonParseException, ServiceException {
+        VenueSearchCriteria criteria = new VenueSearchCriteria(pageNumber, pageSize, citySysNo, districtSysno, category);
         Uri.Builder b = Uri.parse(RESTFUL_SERVICE_HOST_WWW).buildUpon();
         b.path("/venue/query");
         String url = b.build().toString();
@@ -54,8 +54,9 @@ public class GreenService extends BaseService {
         String url = b.build().toString();
         Gson gson = new Gson();
         String jsonString = read(url + "?id=" + citysysno);
-        Type listType = new TypeToken<ResultData<List<AreaInfo>>>() {}.getType();
-        ResultData<List<AreaInfo>> resultData = gson.fromJson(jsonString,listType);
+        Type listType = new TypeToken<ResultData<List<AreaInfo>>>() {
+        }.getType();
+        ResultData<List<AreaInfo>> resultData = gson.fromJson(jsonString, listType);
         return resultData.getData();
     }
 

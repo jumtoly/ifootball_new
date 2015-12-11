@@ -3,6 +3,8 @@ package com.ifootball.app.activity.green;
 import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,11 +20,16 @@ import android.widget.TextView;
 
 import com.ifootball.app.R;
 import com.ifootball.app.activity.base.BaseActivity;
+import com.ifootball.app.adapter.stand.StandPage2DAdapter;
 import com.ifootball.app.common.Common;
+import com.ifootball.app.common.StandPageTypeEnum;
 import com.ifootball.app.entity.AreaInfo;
 import com.ifootball.app.entity.BizException;
+import com.ifootball.app.entity.HasCollection;
 import com.ifootball.app.entity.VenueSearchCriteria;
+import com.ifootball.app.entity.VenueSearchResultInfo;
 import com.ifootball.app.entity.VenueSearchResultItem;
+import com.ifootball.app.entity.stand.StandInfo;
 import com.ifootball.app.framework.adapter.MyDecoratedAdapter;
 import com.ifootball.app.framework.cache.MySharedCache;
 import com.ifootball.app.framework.content.CBCollectionResolver;
@@ -34,6 +41,7 @@ import com.ifootball.app.util.IntentUtil;
 import com.ifootball.app.util.MyAsyncTask;
 import com.ifootball.app.webservice.ServiceException;
 import com.ifootball.app.webservice.green.GreenService;
+import com.ifootball.app.webservice.stand.StandService;
 import com.neweggcn.lib.json.JsonParseException;
 
 import java.io.IOException;
@@ -45,6 +53,8 @@ import java.util.Map;
 
 public class GreenActivity extends BaseActivity implements View.OnClickListener {
     private final static int MSG_GET_DATA = 0;
+    private static final int pageSize = 10;
+    private int pageIndex = 0;
 
     private TextView mSelectMap;
     private TextView mCurrentCity;
@@ -53,12 +63,14 @@ public class GreenActivity extends BaseActivity implements View.OnClickListener 
     private RadioGroup categorySelectorContainer;
     private RadioGroup districtSelectorContainer;
     private ListView mVenueListView;
-    VenueSearchCriteria criteria;
+    private String districtSysno;
+    private String category;
 
     private MyVenueListAdapter mAdapter;
     private CollectionStateObserver mObserver;
     private CBCollectionResolver<VenueSearchResultItem> mResolver;
     private int radioButtonID = 1;
+    private Handler mHandler;
 
 
     @Override
@@ -66,11 +78,36 @@ public class GreenActivity extends BaseActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         putContentView(R.layout.activity_green, "", NavigationHelper.GREEN,
                 true, true);
+        setHandler();
         findView();
         getData();
 
     }
 
+    private void setHandler() {
+        mHandler = new Handler(new Handler.Callback() {
+
+            @Override
+            public boolean handleMessage(Message msg) {
+                if (msg.what == MSG_GET_DATA) {
+                    VenueSearchResultInfo info = (VenueSearchResultInfo) msg.obj;
+                    if (info != null && info.getList() != null
+                            && info.getList().size() > 0
+                            && info.getPageInfo() != null) {
+                        // criteria.setPageNumber(criteria.getPageNumber() + 1);
+
+                        mVenueListView.setVisibility(View.VISIBLE);
+//                        mEmptyLayout.setVisibility(View.GONE);
+                    } else {
+                        mVenueListView.setVisibility(View.GONE);
+//                        mEmptyLayout.setVisibility(View.VISIBLE);
+                    }
+
+                }
+                return false;
+            }
+        });
+    }
 
     protected void getData() {
 
@@ -108,26 +145,7 @@ public class GreenActivity extends BaseActivity implements View.OnClickListener 
 
         }.execute();
 
-
-     /*   mResolver = new CBCollectionResolver<VenueSearchResultItem>() {
-            @Override
-            public HasCollection<VenueSearchResultItem> query()
-                    throws IOException, ServiceException, BizException {
-                VenueSearchResultInfo info = new GreenService()
-                        .search(criteria);
-
-               *//* Message msg = new Message();
-                msg.what = MSG_GET_DATA;
-                msg.obj = info;
-                mGetListHandler.sendMessage(msg);*//*
-                return info;
-            }
-        };
-
-        mObserver = new CollectionStateObserver();
-        mObserver.setActivity(this);
-
-        refresh();*/
+        getVenueList();
     }
 
     private void initSelector(LinearLayout container, LinkedHashMap<String, String> hashmap) {
@@ -163,28 +181,27 @@ public class GreenActivity extends BaseActivity implements View.OnClickListener 
         categorySelectorContainer = (RadioGroup) findViewById(R.id.venue_selector_category_container);
         districtSelectorContainer = (RadioGroup) findViewById(R.id.venue_selector_district_container);
 
-        categorySelectorContainer
-                .setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        categorySelectorContainer.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        RadioButton rb = (RadioButton) findViewById(group.getCheckedRadioButtonId());
-                        categoryButton.setText(rb.getText());
-                        criteria.setCategory(rb.getTag().toString());
-                        criteria.setPageNumber(1);
-                        refresh();
-                        categorySelectorContainer.setVisibility(View.GONE);
-                    }
-                });
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton rb = (RadioButton) findViewById(group.getCheckedRadioButtonId());
+                categoryButton.setText(rb.getText());
+                category = rb.getTag().toString();
+                pageIndex = 0;
+                getVenueList();
+                categorySelectorContainer.setVisibility(View.GONE);
+            }
+        });
         districtSelectorContainer.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton rb = (RadioButton) findViewById(group.getCheckedRadioButtonId());
                 districtButton.setText(rb.getText());
-                criteria.setDistrictSysno(rb.getTag().toString());
-                criteria.setPageNumber(1);
-                refresh();
+                districtSysno = rb.getTag().toString();
+                pageIndex = 0;
+                getVenueList();
                 districtSelectorContainer.setVisibility(View.GONE);
             }
         });
@@ -243,21 +260,40 @@ public class GreenActivity extends BaseActivity implements View.OnClickListener 
     }
 
 
-    private void refresh() {
+    private void getVenueList() {
+        mResolver = new CBCollectionResolver<VenueSearchResultItem>() {
+            @Override
+            public HasCollection<VenueSearchResultItem> query()
+                    throws IOException, ServiceException, BizException {
+                VenueSearchResultInfo info = new GreenService().search(pageIndex, pageSize, 1, districtSysno, category);
+
+                if (info != null
+                        && info.getList() != null
+                        && info.getList().size() > 0) {
+                    pageIndex = pageIndex + 1;
+
+                }
+
+                Message msg = new Message();
+                msg.what = MSG_GET_DATA;
+                msg.obj = info;
+                mHandler.sendMessage(msg);
+                return info;
+            }
+        };
+
+        mObserver = new CollectionStateObserver();
+        mObserver.setActivity(this);
         mAdapter = new MyVenueListAdapter(this);
         mAdapter.setVisible(true);
-
         mVenueListView.setAdapter(mAdapter);
         mObserver.setAdapters(mAdapter);
         mObserver.showContent();
-        mVenueListView
-                .setOnScrollListener(new MyDecoratedAdapter.ListScrollListener(
-                        mAdapter, mResolver));
+        mVenueListView.setOnScrollListener(new MyDecoratedAdapter.ListScrollListener(mAdapter, mResolver));
         mAdapter.startQuery(mResolver);
     }
 
-    private class MyVenueListAdapter extends
-            MyDecoratedAdapter<VenueSearchResultItem> {
+    private class MyVenueListAdapter extends MyDecoratedAdapter<VenueSearchResultItem> {
         private MyVenueListAdapter(Context context) {
             super(context);
             this.mContext = context;
@@ -270,8 +306,7 @@ public class GreenActivity extends BaseActivity implements View.OnClickListener 
 
         @Override
         protected View newErrorView(Context context, ViewGroup parent) {
-            View view = inflater.inflate(R.layout.frm_list_item_error, parent,
-                    false);
+            View view = inflater.inflate(R.layout.frm_list_item_error, parent, false);
             view.findViewById(R.id.retry).setOnClickListener(
                     new View.OnClickListener() {
                         @Override

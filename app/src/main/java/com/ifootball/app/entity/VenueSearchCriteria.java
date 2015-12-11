@@ -3,64 +3,72 @@ package com.ifootball.app.entity;
 import com.neweggcn.lib.json.annotations.SerializedName;
 
 public class VenueSearchCriteria {
-	/**
-	 * 当前页码（为0的时候，会显示推荐的产品）
-	 */
-	@SerializedName("PageIndex")
-	private int pageNumber;
-	/**
-	 * 一页返回多少条数据，默认值为20
-	 */
-	@SerializedName("PageSize")
-	private int PageSize = 20;
-	
-	@SerializedName("CitySysNo")
-	private int CitySysNo;
-	
-	
-	@SerializedName("DistrictSysno")
-	private String DistrictSysno;
-	
-	public int getPageNumber() {
-		return pageNumber;
-	}
+    /**
+     * 当前页码（为0的时候，会显示推荐的产品）
+     */
+    @SerializedName("PageIndex")
+    private int pageNumber;
+    /**
+     * 一页返回多少条数据，默认值为20
+     */
+    @SerializedName("PageSize")
+    private int PageSize = 20;
 
-	public void setPageNumber(int pageNumber) {
-		this.pageNumber = pageNumber;
-	}
+    @SerializedName("CitySysNo")
+    private int CitySysNo;
 
-	public int getPageSize() {
-		return PageSize;
-	}
 
-	public void setPageSize(int pageSize) {
-		PageSize = pageSize;
-	}
+    @SerializedName("DistrictSysno")
+    private String DistrictSysno;
 
-	public int getCitySysNo() {
-		return CitySysNo;
-	}
+    public VenueSearchCriteria(int pageNumber, int pageSize, int citySysNo, String districtSysno, String category) {
+        this.pageNumber = pageNumber;
+        PageSize = pageSize;
+        CitySysNo = citySysNo;
+        DistrictSysno = districtSysno;
+        Category = category;
+    }
 
-	public void setCitySysNo(int citySysNo) {
-		CitySysNo = citySysNo;
-	}
+    public int getPageNumber() {
+        return pageNumber;
+    }
 
-	public String getDistrictSysno() {
-		return DistrictSysno;
-	}
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
+    }
 
-	public void setDistrictSysno(String districtSysno) {
-		DistrictSysno = districtSysno;
-	}
+    public int getPageSize() {
+        return PageSize;
+    }
 
-	public String getCategory() {
-		return Category;
-	}
+    public void setPageSize(int pageSize) {
+        PageSize = pageSize;
+    }
 
-	public void setCategory(String category) {
-		Category = category;
-	}
+    public int getCitySysNo() {
+        return CitySysNo;
+    }
 
-	@SerializedName("Category")
-	private String Category;
+    public void setCitySysNo(int citySysNo) {
+        CitySysNo = citySysNo;
+    }
+
+    public String getDistrictSysno() {
+        return DistrictSysno;
+    }
+
+    public void setDistrictSysno(String districtSysno) {
+        DistrictSysno = districtSysno;
+    }
+
+    public String getCategory() {
+        return Category;
+    }
+
+    public void setCategory(String category) {
+        Category = category;
+    }
+
+    @SerializedName("Category")
+    private String Category;
 }

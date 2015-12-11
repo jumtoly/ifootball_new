@@ -45,5 +45,6 @@ dependencies {
     compile files('src/main/libs/android-support-annotations.jar')
     compile files('src/main/libs/filecache.jar')
     compile files('src/main/libs/android-async-http-1.4.8.jar')
+    compile files('libs/android-async-http-1.4.8.jar')
 }
 configurations { all*.exclude group: 'com.android.support', module: 'support-v4' }

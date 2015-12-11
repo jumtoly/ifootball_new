@@ -47,8 +47,7 @@ public class StandRostrumFragment extends BaseFragment {
     private boolean mHasLoadedOnce;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (view == null) {
 
             view = inflater.inflate(R.layout.activity_stand_fragment_content, null);

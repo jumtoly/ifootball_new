@@ -31,10 +31,10 @@ public class BaseService {
         switch (CURRENTEN_ENVIRONMENT_TYPE) {
 
             case EnvironmentType_LANTestRelease:
-                RESTFUL_SERVICE_HOST_WWW = "http://182.150.28.110:9100/";
-                RESTFUL_SERVICE_HOST_SSL = "http://182.150.28.110:9100/";
-            /*RESTFUL_SERVICE_HOST_WWW = "http://192.168.60.101:9100/";
-            RESTFUL_SERVICE_HOST_SSL = "http://192.168.60.101:9100/";*/
+                /*RESTFUL_SERVICE_HOST_WWW = "http://182.150.28.110:9100/";
+                RESTFUL_SERVICE_HOST_SSL = "http://182.150.28.110:9100/";*/
+                RESTFUL_SERVICE_HOST_WWW = "http://192.168.60.101:9100/";
+                RESTFUL_SERVICE_HOST_SSL = "http://192.168.60.101:9100/";
                 break;
             case EnvironmentType_WWWTestRelease:
                 RESTFUL_SERVICE_HOST_WWW = "http://app.kjt.com.pre/";
@@ -114,7 +114,7 @@ public class BaseService {
             throws IOException, ServiceException {
         HttpURLConnection httpClient = BetterHttp.getHttpClient(urlString, "POST", false);
         addForgotPasswordHeader(httpClient);
-        BetterHttp.setBody(httpClient,bodyString);
+        BetterHttp.setBody(httpClient, bodyString);
         int statusCode = httpClient.getResponseCode();
         if (isSuccessful(statusCode)) {
             String cookie = httpClient.getHeaderField(RESPONSE_COOKIE_KEY);
