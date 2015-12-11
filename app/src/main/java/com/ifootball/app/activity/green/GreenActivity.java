@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.ifootball.app.R;
 import com.ifootball.app.activity.base.BaseActivity;
+import com.ifootball.app.activity.stand.StandActivity;
 import com.ifootball.app.adapter.stand.StandPage2DAdapter;
 import com.ifootball.app.common.Common;
 import com.ifootball.app.common.StandPageTypeEnum;
@@ -238,7 +239,17 @@ public class GreenActivity extends BaseActivity implements View.OnClickListener 
                 map.put("39.906965", "116.401394");
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(MapActivity.COURT_LOCATION, map);
-                IntentUtil.redirectToNextActivity(GreenActivity.this, MapActivity.class, bundle);
+                IntentUtil.redirectToNextActivity(GreenActivity.this, MapActivity.class,bundle);
+
+
+               /* HashMap<String, String> map = new HashMap<>();
+                map.put("39.963175", "116.400244");
+                map.put("39.942821", "116.369199");
+                map.put("39.939723", "116.425541");
+                map.put("39.906965", "116.401394");
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(GreenMapActivity.COURT_LOCATION, map);
+                IntentUtil.redirectToNextActivity(GreenActivity.this, GreenMapActivity.class, bundle);*/
                 break;
             case R.id.frg_green_allarea:
                 if (districtSelectorContainer.getVisibility() == View.GONE) {
@@ -400,7 +411,7 @@ public class GreenActivity extends BaseActivity implements View.OnClickListener 
                /* HashMap<Float, Float> map = new HashMap<>();
                 map.put(Float.valueOf(MySharedCache.get(Common.CURRENT_LONGITUDE.name(), "0")) Float.valueOf(MySharedCache.get(Common.CURRENT_LATITUDE.name(), "0")));
                 Bundle bundle = new Bundle();
-                IntentUtil.redirectToNextActivity(GreenActivity.this, MapActivity.class, bundle);*/
+                IntentUtil.redirectToNextActivity(GreenActivity.this, GreenMapActivity.class, bundle);*/
 
             }
         });

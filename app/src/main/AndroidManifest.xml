@@ -2,7 +2,6 @@
 <manifest package="com.ifootball.app"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
-
     <!-- 允许程序打开网络sockets -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <!-- 允许程序访问Wi-Fi网络状态信息 -->
@@ -23,23 +22,24 @@
 
     <!-- 百度地图需要的权限 -->
 
-    <!-- 这个权限用于进行网络定位-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
-    <!-- 这个权限用于访问GPS定位-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
-    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->
-    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>-->
-    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口-->
-    <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>-->
-    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission> -->
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission> -->
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <!-- 用于读取手机当前的状态-->
+    <!-- 用于读取手机当前的状态 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据-->
-    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>-->
-    <!-- 访问网络，网络定位需要上网-->
-    <!--  <uses-permission android:name="android.permission.INTERNET"/>-->
-    <!-- SD卡读取权限，用户写入离线定位数据-->
+    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
+    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> -->
+    <!-- 访问网络，网络定位需要上网 -->
+    <!-- <uses-permission android:name="android.permission.INTERNET"/> -->
+    <!-- SD卡读取权限，用户写入离线定位数据 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 
     <!-- 百度地图需要的权限end -->
@@ -55,9 +55,8 @@
     <uses-feature android:name="android.hardware.camera.autofocus"/>
     <uses-feature android:name="android.hardware.autofocus"/>
 
-
     <application
-        android:name="com.ifootball.app.baseapp.BaseApp"
+        android:name=".baseapp.BaseApp"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/app_icon"
@@ -79,9 +78,8 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="LTskQjeD4GaMFYUXeM8AbZkt"/>
 
-
         <activity
-            android:name="com.ifootball.app.activity.stand.StartActivity"
+            android:name=".activity.stand.StartActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -94,75 +92,80 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ifootball.app.activity.stand.FirstStartAppActivity"
+            android:name=".activity.stand.FirstStartAppActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity
-            android:name="com.ifootball.app.activity.stand.StandActivity"
+            android:name=".activity.stand.StandActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NoTitle"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity
-            android:name="com.ifootball.app.activity.green.GreenActivity"
+            android:name=".activity.green.GreenActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NoTitle"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity
-            android:name="com.ifootball.app.activity.found.FoundActivity"
+            android:name=".activity.found.FoundActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NoTitle"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity
-            android:name="com.ifootball.app.activity.career.CareerActivity"
+            android:name=".activity.career.CareerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NoTitle"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity
-            android:name="com.ifootball.app.activity.release.ReleaseImageActivity"
+            android:name=".activity.release.ReleaseImageActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NoTitle"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity
-            android:name="com.ifootball.app.activity.release.ReleaseTrendsActivity"
+            android:name=".activity.release.ReleaseTrendsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NoTitle"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity
-            android:name="com.ifootball.app.activity.stand.SeeImageActivity"
+            android:name=".activity.stand.SeeImageActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NoTitle"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
-
         <activity
-            android:name="com.ifootball.app.activity.stand.DetailsActivity"
+            android:name=".activity.stand.DetailsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NoTitle"
             android:windowSoftInputMode="adjustResize|adjustUnspecified|stateHidden">
         </activity>
         <activity
-            android:name="com.ifootball.app.activity.green.MapActivity"
+            android:name=".activity.green.GreenMapActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NoTitle"
             android:windowSoftInputMode="adjustPan|stateHidden">
         </activity>
+        <activity android:name=".activity.green.MapActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/Theme.NoTitle"
+                  android:windowSoftInputMode="adjustPan|stateHidden"/>
 
-        <service android:name="com.ifootball.app.androidservice.LocationService"/>
+        <service android:name=".androidservice.LocationService"/>
+
+
     </application>
-
 
 </manifest>

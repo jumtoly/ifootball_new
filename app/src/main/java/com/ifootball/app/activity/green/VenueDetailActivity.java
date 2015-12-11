@@ -71,7 +71,7 @@ public class VenueDetailActivity extends BaseActivity {
             public void onClick() {
 
                 Intent intent = new Intent(VenueDetailActivity.this,
-                        MapActivity.class);
+                        GreenMapActivity.class);
                 VenueDetailActivity.this.startActivity(intent);
             }
         });
