@@ -20,17 +20,12 @@ import android.widget.TextView;
 
 import com.ifootball.app.R;
 import com.ifootball.app.activity.base.BaseActivity;
-import com.ifootball.app.activity.stand.StandActivity;
-import com.ifootball.app.adapter.stand.StandPage2DAdapter;
 import com.ifootball.app.common.Common;
-import com.ifootball.app.common.StandPageTypeEnum;
 import com.ifootball.app.entity.AreaInfo;
 import com.ifootball.app.entity.BizException;
 import com.ifootball.app.entity.HasCollection;
-import com.ifootball.app.entity.VenueSearchCriteria;
 import com.ifootball.app.entity.VenueSearchResultInfo;
 import com.ifootball.app.entity.VenueSearchResultItem;
-import com.ifootball.app.entity.stand.StandInfo;
 import com.ifootball.app.framework.adapter.MyDecoratedAdapter;
 import com.ifootball.app.framework.cache.MySharedCache;
 import com.ifootball.app.framework.content.CBCollectionResolver;
@@ -42,7 +37,6 @@ import com.ifootball.app.util.IntentUtil;
 import com.ifootball.app.util.MyAsyncTask;
 import com.ifootball.app.webservice.ServiceException;
 import com.ifootball.app.webservice.green.GreenService;
-import com.ifootball.app.webservice.stand.StandService;
 import com.neweggcn.lib.json.JsonParseException;
 
 import java.io.IOException;
@@ -77,8 +71,7 @@ public class GreenActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        putContentView(R.layout.activity_green, "", NavigationHelper.GREEN,
-                true, true);
+        putContentView(R.layout.activity_green, "", NavigationHelper.GREEN,true, true);
         setHandler();
         findView();
         getData();
@@ -213,7 +206,7 @@ public class GreenActivity extends BaseActivity implements View.OnClickListener 
                                     int position, long id) {
                 VenueSearchResultItem info = (VenueSearchResultItem) parent.getItemAtPosition(position);
                 Bundle bundle = new Bundle();
-                bundle.putInt("SysNo", info.getSysNo());
+                bundle.putInt(VenueDetailActivity.SYSNO, info.getSysNo());
                 IntentUtil.redirectToNextActivity(GreenActivity.this, VenueDetailActivity.class, bundle);
             }
         });
@@ -397,11 +390,11 @@ public class GreenActivity extends BaseActivity implements View.OnClickListener 
 
             @Override
             public void onClick(View v) {
-               /* HashMap<Float, Float> map = new HashMap<>();
-                map.put(Float.valueOf(MySharedCache.get(Common.CURRENT_LONGITUDE.name(), "0")) Float.valueOf(MySharedCache.get(Common.CURRENT_LATITUDE.name(), "0")));
+                HashMap<String, String> map = new HashMap<>();
+                map.put(String.valueOf(info.getLatitude()), String.valueOf(info.getLongitude()));
                 Bundle bundle = new Bundle();
-                IntentUtil.redirectToNextActivity(GreenActivity.this, GreenMapActivity.class, bundle);*/
-
+                bundle.putSerializable(MapActivity.COURT_LOCATION, map);
+                IntentUtil.redirectToNextActivity(GreenActivity.this, MapActivity.class, bundle);
             }
         });
 

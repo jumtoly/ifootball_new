@@ -155,6 +155,11 @@
                   android:screenOrientation="portrait"
                   android:theme="@style/Theme.NoTitle"
                   android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:name=".activity.green.VenueDetailActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/Theme.NoTitle"
+                  android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <service android:name=".androidservice.LocationService"/>
 

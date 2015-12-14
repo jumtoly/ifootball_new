@@ -189,14 +189,14 @@
             android:paddingRight="10dp"
             android:paddingTop="5dp">
 
-            <com.ifootball.app.activity.view.CircleImageView
+            <com.ifootball.app.framework.widget.CircleImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_centerVertical="true"
                 android:background="@drawable/radius_redbg"
                 android:src="@mipmap/ico_footmarkon"/>
 
-            <com.ifootball.app.activity.view.CircleImageView
+            <com.ifootball.app.framework.widget.CircleImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_centerVertical="true"

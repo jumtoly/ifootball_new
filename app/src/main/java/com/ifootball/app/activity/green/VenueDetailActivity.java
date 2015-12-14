@@ -36,6 +36,7 @@ import com.neweggcn.lib.json.JsonParseException;
 import java.io.IOException;
 
 public class VenueDetailActivity extends BaseActivity {
+    public static final String SYSNO = "SYSNO";
 
     @SuppressWarnings("deprecation")
     private ViewPager mViewPager;
@@ -58,8 +59,7 @@ public class VenueDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mVenueSysNo = getIntent().getIntExtra("SysNo", 0);
-        setContentView(R.layout.activity_green_venue_detail);
+        putContentView(R.layout.activity_green_venue_detail, "", true, true);
         TitleBarView view = (TitleBarView) findViewById(R.id.details_titlebar);
         view.setViewData(getResources().getDrawable(R.mipmap.ico_backspace),
                 "球场概况", getResources().getDrawable(R.mipmap.ico_map));
@@ -71,11 +71,11 @@ public class VenueDetailActivity extends BaseActivity {
             public void onClick() {
 
                 Intent intent = new Intent(VenueDetailActivity.this,
-                        GreenMapActivity.class);
+                        MapActivity.class);
                 VenueDetailActivity.this.startActivity(intent);
             }
         });
-
+        mVenueSysNo = getIntent().getIntExtra(SYSNO, 0);
         findView();
         mHandler = new Handler() {
 

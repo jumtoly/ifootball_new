@@ -12,6 +12,7 @@ import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.InfoWindow;
+import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
@@ -48,7 +49,7 @@ public class MapActivity extends BaseActivity {
     private InfoWindow mInfoWindow;
     private List<LatLng> latLngList = new ArrayList<>();
     private List<MarkerOptions> markerOptionsList = new ArrayList<>();
-    private BitmapDescriptor mark ;
+    private BitmapDescriptor mark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,16 +71,32 @@ public class MapActivity extends BaseActivity {
 
     private void initOverlay() {
         Float f = mBaiduMap.getMaxZoomLevel();
-        MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(f - 6);
-        mBaiduMap.setMapStatus(msu);
-
         Set<String> keySet = courtLocationMap.keySet();
-        for (String lat : keySet) {
-            LatLng latLng = new LatLng(Double.valueOf(lat), Double.valueOf(courtLocationMap.get(lat)));
-            MarkerOptions options = new MarkerOptions().position(latLng).icon(mark).zIndex(0);
-            Marker marker = (Marker) mBaiduMap.addOverlay(options);
-            marker.setTitle("更改位置");
+        if (courtLocationMap.size() == 1) {
+
+            for (String lat : keySet) {
+                LatLng latLng = new LatLng(Double.valueOf(lat), Double.valueOf(courtLocationMap.get(lat)));
+                MapStatus mMapStatus = new MapStatus.Builder().target(latLng).zoom(18).build();
+                MapStatusUpdate mapStatusUpdate = MapStatusUpdateFactory.newMapStatus(mMapStatus);
+                mBaiduMap.setMapStatus(mapStatusUpdate);
+                MarkerOptions options = new MarkerOptions().position(latLng).icon(mark).zIndex(0);
+                Marker marker = (Marker) mBaiduMap.addOverlay(options);
+                marker.setTitle("更改位置");
+            }
+
+        } else {
+
+            MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(f - 5);
+            mBaiduMap.setMapStatus(msu);
+            for (String lat : keySet) {
+                LatLng latLng = new LatLng(Double.valueOf(lat), Double.valueOf(courtLocationMap.get(lat)));
+                MarkerOptions options = new MarkerOptions().position(latLng).icon(mark).zIndex(0);
+                Marker marker = (Marker) mBaiduMap.addOverlay(options);
+                marker.setTitle("更改位置");
+            }
         }
+
+
         mBaiduMap.setOnMarkerClickListener(new BaiduMap.OnMarkerClickListener() {
                                                @Override
                                                public boolean onMarkerClick(final Marker marker) {
@@ -172,6 +189,7 @@ public class MapActivity extends BaseActivity {
         mMapView.onDestroy();
         mMapView = null;
         mark.recycle();
+        this.finish();
         super.onDestroy();
     }
 
