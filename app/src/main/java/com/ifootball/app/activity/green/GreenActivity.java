@@ -233,23 +233,12 @@ public class GreenActivity extends BaseActivity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.frg_green_title_map_seclect:
                 HashMap<String, String> map = new HashMap<>();
-                map.put("39.963175", "116.400244");
-                map.put("39.942821", "116.369199");
-                map.put("39.939723", "116.425541");
-                map.put("39.906965", "116.401394");
+                map.put("30.5575090000", "104.0632410000");
+                map.put("30.5530420000", "104.0624830000");
+                map.put("30.5620490000", "104.0592650000");
                 Bundle bundle = new Bundle();
                 bundle.putSerializable(MapActivity.COURT_LOCATION, map);
-                IntentUtil.redirectToNextActivity(GreenActivity.this, MapActivity.class,bundle);
-
-
-               /* HashMap<String, String> map = new HashMap<>();
-                map.put("39.963175", "116.400244");
-                map.put("39.942821", "116.369199");
-                map.put("39.939723", "116.425541");
-                map.put("39.906965", "116.401394");
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(GreenMapActivity.COURT_LOCATION, map);
-                IntentUtil.redirectToNextActivity(GreenActivity.this, GreenMapActivity.class, bundle);*/
+                IntentUtil.redirectToNextActivity(GreenActivity.this, MapActivity.class, bundle);
                 break;
             case R.id.frg_green_allarea:
                 if (districtSelectorContainer.getVisibility() == View.GONE) {

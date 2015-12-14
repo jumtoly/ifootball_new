@@ -150,13 +150,6 @@
             android:theme="@style/Theme.NoTitle"
             android:windowSoftInputMode="adjustResize|adjustUnspecified|stateHidden">
         </activity>
-        <activity
-            android:name=".activity.green.GreenMapActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.NoTitle"
-            android:windowSoftInputMode="adjustPan|stateHidden">
-        </activity>
         <activity android:name=".activity.green.MapActivity"
                   android:configChanges="keyboardHidden|orientation|screenSize"
                   android:screenOrientation="portrait"
