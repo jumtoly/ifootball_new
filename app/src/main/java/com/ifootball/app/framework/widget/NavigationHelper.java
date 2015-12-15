@@ -98,8 +98,7 @@ public class NavigationHelper {
 
         setCartItemsCount(qty);
 
-        mItemTextColor = mActivity.getResources().getColor(
-                R.color.navigation_bar_item_text);
+        mItemTextColor = mActivity.getResources().getColor(R.color.navigation_bar_item_text);
         mItemTextPressedColor = mActivity.getResources().getColor(
                 R.color.navigation_bar_item_text_pressed);
         mItemLinePressedColor = mActivity.getResources().getColor(

@@ -148,4 +148,9 @@ public class FoundActivity extends BaseActivity implements ViewPager.OnPageChang
         }
 
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//		contentViewPager.clearOnPageChangeListeners();
+    }
 }
