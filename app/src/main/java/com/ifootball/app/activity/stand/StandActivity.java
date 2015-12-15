@@ -52,7 +52,7 @@ public class StandActivity extends BaseActivity implements OnClickListener,
 
         findview();
         initManager(savedInstanceState);
-        inteViewPager();
+        initViewPager();
     }
 
 
@@ -60,14 +60,13 @@ public class StandActivity extends BaseActivity implements OnClickListener,
 
     }
 
-    private void inteViewPager() {
+    private void initViewPager() {
         listViews = new ArrayList<Fragment>();
         listViews.add(new StandRostrumFragment());
         listViews.add(new StandNearByFragment());
         listViews.add(new StandNewsFragment());
         listViews.add(new StandBestHeatFragment());
-        contentViewPager.setAdapter(new HomeViewPagerAdapter(
-                getSupportFragmentManager(), listViews));
+        contentViewPager.setAdapter(new HomeViewPagerAdapter(getSupportFragmentManager(), listViews));
         contentViewPager.setCurrentItem(ROSTRUM);
         setSelectBar(ROSTRUM);
 

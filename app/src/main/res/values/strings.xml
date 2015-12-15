@@ -35,5 +35,7 @@
     <string name="look">看台</string>
     <string name="nearby">附近</string>
     <string name="max_img">最多只能添加%1$s张</string>
+    <string name="nearby_friends">附近球友</string>
+    <string name="nearby_ball">附近球场</string>
 
 </resources>

@@ -1,29 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg_color"
-    android:orientation="vertical" >
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_color"
+                android:orientation="vertical">
 
-    <RelativeLayout
+    <!--   <FrameLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:background="@color/bg_color">-->
+
+
+    <LinearLayout
+        android:id="@+id/found_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/top_bar_bg"
-        android:gravity="center_vertical"
-        android:paddingRight="10dp" >
-
-        <TextView
-            android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="found" />
-    </RelativeLayout>
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/found_bar_ball_layout"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/found_bar_ball"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@null"
+                    android:text="@string/nearby_ball"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+
+                <ImageView
+                    android:id="@+id/found_bar_ball_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/ico_line"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/found_bar_friend_layout"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/found_bar_friend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@null"
+                    android:text="@string/nearby_friends"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+
+                <ImageView
+                    android:id="@+id/found_bar_friend_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/ico_line"/>
+            </RelativeLayout>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/frg_found_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:src="@mipmap/ico_map"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- </FrameLayout>-->
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:layout_below="@id/found_bar_layout">
+        <include
+            layout="@layout/found_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/frg_found_vPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:background="@null"
+            android:flipInterval="30"
+            android:persistentDrawingCache="animation"/>
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/frg_found_center"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/frg_found_reflash"
+            android:layout_width="70dp"
+            android:layout_height="28dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/radius_with_blackbg"
+            android:drawableLeft="@mipmap/ico_refresh"
+            android:padding="5dp"
+            android:text="换一批"
+            android:textColor="@color/white"
+            android:textSize="12sp"/>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" >
+        android:layout_alignParentBottom="true">
 
-        <include layout="@layout/frm_navigation_bar" />
+        <include layout="@layout/frm_navigation_bar"/>
     </LinearLayout>
 
 </RelativeLayout>

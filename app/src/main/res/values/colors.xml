@@ -27,4 +27,9 @@
 
     <color name="selcet_no_text_bg">#FF3A3F43</color>
 
+    <!--发现圆圈背景颜色-->
+    <color name="circle_line_bg1">#393a3f43</color>
+    <color name="circle_line_bg2">#303a3f43</color>
+    <color name="circle_line_bg3">#203a3f43</color>
+
 </resources>

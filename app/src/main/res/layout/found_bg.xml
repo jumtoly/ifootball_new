@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:focusable="false"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shapecount_nosolid2" />
+
+    <View
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shapecount_nosolid2" />
+
+    <View
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shapecount_nosolid2" />
+
+    <View
+        android:layout_width="380dp"
+        android:layout_height="380dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shapecount_nosolid3" />
+
+    <View
+        android:layout_width="520dp"
+        android:layout_height="520dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shapecount_nosolid3" />
+
+    <View
+        android:layout_width="700dp"
+        android:layout_height="700dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shapecount_nosolid3" />
+
+    <View
+        android:layout_width="950dp"
+        android:layout_height="950dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shapecount_nosolid3" />
+
+    <View
+        android:layout_width="1300dp"
+        android:layout_height="1300dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shapecount_nosolid3" />
+
+</FrameLayout>
