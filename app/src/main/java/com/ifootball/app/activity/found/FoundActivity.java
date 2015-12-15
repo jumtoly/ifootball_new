@@ -9,8 +9,10 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.ifootball.app.R;
+import com.ifootball.app.activity.MapActivity;
 import com.ifootball.app.activity.base.BaseActivity;
 import com.ifootball.app.activity.stand.StandBestHeatFragment;
 import com.ifootball.app.activity.stand.StandNearByFragment;
@@ -18,11 +20,13 @@ import com.ifootball.app.activity.stand.StandRostrumFragment;
 import com.ifootball.app.framework.widget.CircleImageView;
 import com.ifootball.app.framework.widget.NavigationHelper;
 import com.ifootball.app.util.ExitAppUtil;
+import com.ifootball.app.util.IntentUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class FoundActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
+public class FoundActivity extends BaseActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private static final int BALL = 0;
     private static final int FRIEND = 1;
 
@@ -33,6 +37,9 @@ public class FoundActivity extends BaseActivity implements ViewPager.OnPageChang
     private Button friendBtn;
     private ImageView ballImg;
     private ImageView friendImg;
+    private RelativeLayout ballBarLayout;
+    private RelativeLayout friendBarLaout;
+    private ImageView map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +59,20 @@ public class FoundActivity extends BaseActivity implements ViewPager.OnPageChang
     private void findview() {
         ballBtn = (Button) findViewById(R.id.found_bar_ball);
         friendBtn = (Button) findViewById(R.id.found_bar_friend);
+
         ballImg = (ImageView) findViewById(R.id.found_bar_ball_line);
         friendImg = (ImageView) findViewById(R.id.found_bar_friend_line);
+        map = (ImageView) findViewById(R.id.found_map);
+
+       /* ballBarLayout = (RelativeLayout) findViewById(R.id.found_bar_ball_layout);
+        friendBarLaout = (RelativeLayout) findViewById(R.id.found_bar_friend_layout);*/
 
         viewPager = (ViewPager) findViewById(R.id.frg_found_vPager);
+
+        ballBtn.setOnClickListener(this);
+        friendBtn.setOnClickListener(this);
+
+        map.setOnClickListener(this);
 
         viewPager.setOffscreenPageLimit(1);
         viewPager.setOnPageChangeListener(this);
@@ -127,6 +144,28 @@ public class FoundActivity extends BaseActivity implements ViewPager.OnPageChang
 
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.found_bar_ball:
+                setSelectBar(BALL);
+                break;
+            case R.id.found_bar_friend:
+                setSelectBar(FRIEND);
+                break;
+            case R.id.found_map:
+                HashMap<String, String> map = new HashMap<>();
+                map.put("30.5575090000", "104.0632410000");
+                map.put("30.5530420000", "104.0624830000");
+                map.put("30.5620490000", "104.0592650000");
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(MapActivity.COURT_LOCATION, map);
+                IntentUtil.redirectToNextActivity(FoundActivity.this, MapActivity.class, bundle);
+                break;
+        }
+
+    }
+
 
     class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         List<Fragment> listViews = new ArrayList<Fragment>();
@@ -148,6 +187,7 @@ public class FoundActivity extends BaseActivity implements ViewPager.OnPageChang
         }
 
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

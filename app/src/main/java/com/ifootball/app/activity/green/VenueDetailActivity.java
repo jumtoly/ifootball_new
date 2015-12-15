@@ -22,6 +22,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.ifootball.app.R;
+import com.ifootball.app.activity.MapActivity;
 import com.ifootball.app.activity.base.BaseActivity;
 import com.ifootball.app.adapter.green.VenueBannerAdapter;
 import com.ifootball.app.entity.BizException;

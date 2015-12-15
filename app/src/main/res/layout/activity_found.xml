@@ -5,11 +5,6 @@
                 android:background="@color/bg_color"
                 android:orientation="vertical">
 
-    <!--   <FrameLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:background="@color/bg_color">-->
-
 
     <LinearLayout
         android:id="@+id/found_bar_layout"
@@ -84,7 +79,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1">
             <ImageView
-                android:id="@+id/frg_found_map"
+                android:id="@+id/found_map"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

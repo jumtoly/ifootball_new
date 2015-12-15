@@ -19,6 +19,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.ifootball.app.R;
+import com.ifootball.app.activity.MapActivity;
 import com.ifootball.app.activity.base.BaseActivity;
 import com.ifootball.app.common.Common;
 import com.ifootball.app.entity.AreaInfo;

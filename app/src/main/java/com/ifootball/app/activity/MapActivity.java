@@ -1,4 +1,4 @@
-package com.ifootball.app.activity.green;
+package com.ifootball.app.activity;
 
 import android.os.Bundle;
 import android.widget.Button;
