@@ -1,5 +1,8 @@
-package com.ifootball.app.entity;
+package com.ifootball.app.entity.green;
 
+import com.ifootball.app.entity.HasCollection;
+import com.ifootball.app.entity.HasPageInfo;
+import com.ifootball.app.entity.PageInfo;
 import com.neweggcn.lib.json.annotations.SerializedName;
 
 import java.util.Collection;

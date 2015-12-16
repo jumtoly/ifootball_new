@@ -1,4 +1,4 @@
-package com.ifootball.app.entity;
+package com.ifootball.app.entity.green;
 
 import com.neweggcn.lib.json.annotations.SerializedName;
 

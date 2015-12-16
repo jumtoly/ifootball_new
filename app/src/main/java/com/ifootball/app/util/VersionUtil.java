@@ -14,7 +14,7 @@ import android.os.Message;
 import com.ifootball.app.baseapp.BaseApp;
 import com.ifootball.app.entity.BizException;
 import com.ifootball.app.entity.ResultData;
-import com.ifootball.app.entity.VersionInfo;
+import com.ifootball.app.entity.green.VersionInfo;
 import com.ifootball.app.framework.cache.MySharedCache;
 import com.ifootball.app.util.MyAsyncTask.OnError;
 import com.ifootball.app.webservice.ServiceException;

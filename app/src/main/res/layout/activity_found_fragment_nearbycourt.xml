@@ -1,10 +1,245 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/frg_nearbycourt_flayout"
+<RelativeLayout android:id="@+id/found_nearbycourt_flayout"
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:layout_centerInParent="true"
-              android:text="court"/>
+                android:layout_height="match_parent"
+                android:layoutAnimation="@anim/layout_anim">
+    <FrameLayout android:id="@+id/ball_one_layout" android:layout_width="85dp"
+                 android:layout_height="85dp"
+                 android:layout_margin="20dp">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/ball_one_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/test_rostrum1"/>
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/rectangle"/>
+        <TextView
+            android:id="@+id/ball_one_tv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+    <FrameLayout android:id="@+id/ball_two_layout" android:layout_width="70dp"
+                 android:layout_height="70dp"
+                 android:layout_below="@id/ball_one_layout"
+                 android:layout_marginLeft="50dp"
+                 android:layout_marginTop="35dp">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/ball_two_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/test_rostrum1"/>
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/rectangle"/>
+        <TextView
+            android:id="@+id/ball_two_tv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+    <FrameLayout android:id="@+id/ball_three_layout" android:layout_width="85dp"
+                 android:layout_height="85dp"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginRight="30dp"
+                 android:layout_marginTop="40dp">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/ball_three_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/test_rostrum1"/>
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/rectangle"/>
+        <TextView
+            android:id="@+id/ball_three_tv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+    <FrameLayout android:id="@+id/ball_four_layout"
+                 android:layout_width="85dp"
+                 android:layout_height="85dp"
+                 android:layout_centerHorizontal="true"
+                 android:layout_marginTop="90dp">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/ball_four_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/test_rostrum1"/>
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/rectangle"/>
+        <TextView
+            android:id="@+id/ball_four_tv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+    <FrameLayout android:id="@+id/ball_five_layout"
+                 android:layout_width="85dp"
+                 android:layout_height="85dp"
+                 android:layout_alignParentRight="true"
+                 android:layout_below="@id/ball_four_layout"
+                 android:layout_marginRight="30dp">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/ball_five_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/test_rostrum1"/>
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/rectangle"/>
+        <TextView
+            android:id="@+id/ball_five_tv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+    <FrameLayout android:id="@+id/ball_six_layout"
+                 android:layout_width="85dp"
+                 android:layout_height="85dp"
+                 android:layout_alignParentRight="true"
+                 android:layout_below="@id/ball_five_layout"
+                 android:layout_marginRight="30dp"
+                 android:layout_marginTop="20dp">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/ball_six_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/test_rostrum1"/>
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/rectangle"/>
+        <TextView
+            android:id="@+id/ball_six_tv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+    <FrameLayout android:id="@+id/ball_seven_layout"
+                 android:layout_width="85dp"
+                 android:layout_height="85dp"
+                 android:layout_alignParentLeft="true"
+                 android:layout_below="@id/ball_two_layout"
+                 android:layout_marginLeft="10dp"
+                 android:layout_marginTop="30dp">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/ball_seven_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/test_rostrum1"/>
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/rectangle"/>
+        <TextView
+            android:id="@+id/ball_seven_tv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+
+    <FrameLayout android:id="@+id/ball_eight_layout"
+                 android:layout_width="85dp"
+                 android:layout_height="85dp"
+                 android:layout_alignParentLeft="true"
+                 android:layout_below="@id/ball_two_layout"
+                 android:layout_marginLeft="70dp"
+                 android:layout_marginTop="130dp">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/ball_eight_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/test_rostrum1"/>
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/rectangle"/>
+        <TextView
+            android:id="@+id/ball_eight_tv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+    <FrameLayout android:id="@+id/ball_nine_layout"
+                 android:layout_width="70dp"
+                 android:layout_height="70dp"
+                 android:layout_below="@id/ball_seven_layout"
+                 android:layout_marginLeft="30dp"
+                 android:layout_marginTop="10dp"
+                 android:layout_toRightOf="@id/ball_eight_layout">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/ball_nine_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/test_rostrum1"/>
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/rectangle"/>
+        <TextView
+            android:id="@+id/ball_nine_tv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+    <FrameLayout android:id="@+id/ball_ten_layout"
+                 android:layout_width="85dp"
+                 android:layout_height="85dp"
+                 android:layout_alignParentBottom="true"
+                 android:layout_alignParentRight="true"
+                 android:layout_margin="20dp">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/ball_ten_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/test_rostrum1"/>
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/rectangle"/>
+        <TextView
+            android:id="@+id/ball_ten_tv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
+    <FrameLayout android:id="@+id/ball_eleven_layout"
+                 android:layout_width="70dp"
+                 android:layout_height="70dp"
+                 android:layout_alignParentBottom="true"
+                 android:layout_alignParentLeft="true"
+                 android:layout_margin="20dp">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/ball_eleven_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/test_rostrum1"/>
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/rectangle"/>
+        <TextView
+            android:id="@+id/ball_eleven_tv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
 
 </RelativeLayout>

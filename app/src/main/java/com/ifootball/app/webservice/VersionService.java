@@ -3,7 +3,7 @@ package com.ifootball.app.webservice;
 import android.net.Uri;
 
 import com.ifootball.app.entity.ResultData;
-import com.ifootball.app.entity.VersionInfo;
+import com.ifootball.app.entity.green.VersionInfo;
 import com.ifootball.app.util.VersionUtil;
 import com.neweggcn.lib.json.Gson;
 import com.neweggcn.lib.json.JsonParseException;
