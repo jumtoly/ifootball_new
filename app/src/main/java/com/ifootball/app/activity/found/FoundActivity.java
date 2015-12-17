@@ -12,18 +12,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.ifootball.app.R;
-import com.ifootball.app.activity.MapActivity;
 import com.ifootball.app.activity.base.BaseActivity;
-import com.ifootball.app.activity.stand.StandBestHeatFragment;
-import com.ifootball.app.activity.stand.StandNearByFragment;
-import com.ifootball.app.activity.stand.StandRostrumFragment;
 import com.ifootball.app.framework.widget.CircleImageView;
 import com.ifootball.app.framework.widget.NavigationHelper;
 import com.ifootball.app.util.ExitAppUtil;
-import com.ifootball.app.util.IntentUtil;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class FoundActivity extends BaseActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
@@ -35,11 +29,14 @@ public class FoundActivity extends BaseActivity implements ViewPager.OnPageChang
     private MyFragmentPagerAdapter mAdapter;
     private Button ballBtn;
     private Button friendBtn;
+    private Button refreshBtn;
     private ImageView ballImg;
     private ImageView friendImg;
     private RelativeLayout ballBarLayout;
     private RelativeLayout friendBarLaout;
     private ImageView map;
+    private OnButtonOnclickListener onMapOnclickListener;
+    private int courrentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +48,7 @@ public class FoundActivity extends BaseActivity implements ViewPager.OnPageChang
     }
 
     private void setCircleImg() {
-        CircleImageView mImageView = (CircleImageView) findViewById(R.id.frg_found_center);
+        CircleImageView mImageView = (CircleImageView) findViewById(R.id.found_center);
         mImageView.setImageResource(R.mipmap.app_icon);
         mImageView.bringToFront();
     }
@@ -64,10 +61,14 @@ public class FoundActivity extends BaseActivity implements ViewPager.OnPageChang
         friendImg = (ImageView) findViewById(R.id.found_bar_friend_line);
         map = (ImageView) findViewById(R.id.found_map);
 
-       /* ballBarLayout = (RelativeLayout) findViewById(R.id.found_bar_ball_layout);
-        friendBarLaout = (RelativeLayout) findViewById(R.id.found_bar_friend_layout);*/
+        ballBarLayout = (RelativeLayout) findViewById(R.id.found_bar_ball_layout);
+        friendBarLaout = (RelativeLayout) findViewById(R.id.found_bar_friend_layout);
 
-        viewPager = (ViewPager) findViewById(R.id.frg_found_vPager);
+        viewPager = (ViewPager) findViewById(R.id.found_vPager);
+
+        refreshBtn = (Button) findViewById(R.id.found_refresh);
+
+        refreshBtn.setOnClickListener(this);
 
         ballBtn.setOnClickListener(this);
         friendBtn.setOnClickListener(this);
@@ -112,7 +113,6 @@ public class FoundActivity extends BaseActivity implements ViewPager.OnPageChang
         ballBtn.getPaint().setFakeBoldText(false);
         ballBtn.postInvalidate();
         ballImg.setVisibility(View.GONE);
-
         friendBtn.getPaint().setFakeBoldText(false);
         friendBtn.postInvalidate();
         friendImg.setVisibility(View.GONE);
@@ -135,8 +135,8 @@ public class FoundActivity extends BaseActivity implements ViewPager.OnPageChang
 
     @Override
     public void onPageSelected(int i) {
+        courrentFragment = i;
         setSelectBar(i);
-
     }
 
     @Override
@@ -146,6 +146,7 @@ public class FoundActivity extends BaseActivity implements ViewPager.OnPageChang
 
     @Override
     public void onClick(View v) {
+        onMapOnclickListener = (OnButtonOnclickListener) listViews.get(courrentFragment);
         switch (v.getId()) {
             case R.id.found_bar_ball:
                 setSelectBar(BALL);
@@ -154,13 +155,10 @@ public class FoundActivity extends BaseActivity implements ViewPager.OnPageChang
                 setSelectBar(FRIEND);
                 break;
             case R.id.found_map:
-                HashMap<String, String> map = new HashMap<>();
-                map.put("30.5575090000", "104.0632410000");
-                map.put("30.5530420000", "104.0624830000");
-                map.put("30.5620490000", "104.0592650000");
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(MapActivity.COURT_LOCATION, map);
-                IntentUtil.redirectToNextActivity(FoundActivity.this, MapActivity.class, bundle);
+                onMapOnclickListener.onMapButtonClick();
+                break;
+            case R.id.found_refresh:
+                onMapOnclickListener.onRefreshButtonClick();
                 break;
         }
 
@@ -192,5 +190,11 @@ public class FoundActivity extends BaseActivity implements ViewPager.OnPageChang
     protected void onDestroy() {
         super.onDestroy();
 //		contentViewPager.clearOnPageChangeListeners();
+    }
+
+    public interface OnButtonOnclickListener {
+        void onMapButtonClick();
+
+        void onRefreshButtonClick();
     }
 }

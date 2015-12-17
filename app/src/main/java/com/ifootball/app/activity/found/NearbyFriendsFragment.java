@@ -14,12 +14,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ifootball.app.R;
+import com.ifootball.app.activity.MapActivity;
 import com.ifootball.app.baseapp.BaseFragment;
 import com.ifootball.app.entity.BizException;
+import com.ifootball.app.entity.found.FoundNearbyCourt;
 import com.ifootball.app.entity.found.FoundNearbyFriend;
 import com.ifootball.app.entity.found.FoundRespone;
 import com.ifootball.app.framework.widget.CircleImageView;
 import com.ifootball.app.util.ImageLoaderUtil;
+import com.ifootball.app.util.IntentUtil;
 import com.ifootball.app.util.MyAsyncTask;
 import com.ifootball.app.webservice.ServiceException;
 import com.ifootball.app.webservice.found.FoundService;
@@ -27,10 +30,11 @@ import com.neweggcn.lib.json.JsonParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-public class NearbyFriendsFragment extends BaseFragment {
+public class NearbyFriendsFragment extends BaseFragment implements FoundActivity.OnButtonOnclickListener {
     private static final int pageSize = 10;
     private int pageIndex = 0;
     private View view;
@@ -39,6 +43,7 @@ public class NearbyFriendsFragment extends BaseFragment {
 
     private LinearLayout[] frameLayouts = new LinearLayout[11];
     private RelativeLayout parentLayout;
+    private List<FoundNearbyFriend> foundNearbyFriends;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -79,7 +84,7 @@ public class NearbyFriendsFragment extends BaseFragment {
         Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.found_img_anim);
         LayoutAnimationController lac = new LayoutAnimationController(animation);
         lac.setOrder(LayoutAnimationController.ORDER_RANDOM);
-        lac.setDelay(1);
+        lac.setDelay((float) 0.3);
         parentLayout.setLayoutAnimation(lac);
     }
 
@@ -89,6 +94,10 @@ public class NearbyFriendsFragment extends BaseFragment {
             return;
         }
 
+        getData();
+    }
+
+    private void getData() {
         new MyAsyncTask<FoundRespone>(getActivity()) {
 
             @Override
@@ -97,7 +106,7 @@ public class NearbyFriendsFragment extends BaseFragment {
                 FoundRespone nearByCourtData = new FoundService().getNearByCourtData(pageIndex, pageSize, 1);
                 if (nearByCourtData != null) {
                     mHasLoadedOnce = true;
-                    pageIndex = pageIndex + 1;
+//                    pageIndex = pageIndex + 1;
                 }
                 return nearByCourtData;
             }
@@ -105,7 +114,8 @@ public class NearbyFriendsFragment extends BaseFragment {
             @Override
             public void onLoaded(FoundRespone result) throws Exception {
                 if (result != null) {
-                    initView(result.getmFoundNearbyFriend());
+                    foundNearbyFriends = result.getmFoundNearbyFriend();
+                    initView();
 
                 }
             }
@@ -114,13 +124,13 @@ public class NearbyFriendsFragment extends BaseFragment {
         }.execute();
     }
 
-    private void initView(final List<FoundNearbyFriend> foundNearbyCourts) {
+    private void initView() {
         recoverView();
         List random = random();
-        for (int i = 0; i < foundNearbyCourts.size(); i++) {
+        for (int i = 0; i < foundNearbyFriends.size(); i++) {
             Log.d("TEST", random.get(i) + "");
             LinearLayout layout = frameLayouts[((int) random.get(i))];
-            final FoundNearbyFriend foundNearbyCourt = foundNearbyCourts.get(i);
+            final FoundNearbyFriend foundNearbyCourt = foundNearbyFriends.get(i);
             ImageLoaderUtil.displayImage(foundNearbyCourt.getAvatarUrl(), (CircleImageView) layout.getChildAt(0), R.mipmap.app_icon);
             if (layout.getChildCount() == 2) {
                 ((TextView) layout.getChildAt(1)).setText(foundNearbyCourt.getNickName());
@@ -170,5 +180,19 @@ public class NearbyFriendsFragment extends BaseFragment {
         return randomList;
     }
 
+    @Override
+    public void onMapButtonClick() {
+        HashMap<String, String> map = new HashMap<>();
+        for (FoundNearbyFriend courtInfo : foundNearbyFriends) {
+            map.put(String.valueOf(courtInfo.getLatitude()), String.valueOf(courtInfo.getLongitude()));
+        }
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(MapActivity.COURT_LOCATION, map);
+        IntentUtil.redirectToNextActivity(getActivity(), MapActivity.class, bundle);
+    }
 
+    @Override
+    public void onRefreshButtonClick() {
+        getData();
+    }
 }

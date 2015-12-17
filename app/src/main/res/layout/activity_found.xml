@@ -98,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
         <android.support.v4.view.ViewPager
-            android:id="@+id/frg_found_vPager"
+            android:id="@+id/found_vPager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
@@ -106,13 +106,13 @@
             android:flipInterval="30"
             android:persistentDrawingCache="animation"/>
         <com.ifootball.app.framework.widget.CircleImageView
-            android:id="@+id/frg_found_center"
+            android:id="@+id/found_center"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"/>
 
         <Button
-            android:id="@+id/frg_found_reflash"
+            android:id="@+id/found_refresh"
             android:layout_width="70dp"
             android:layout_height="28dp"
             android:layout_gravity="right"

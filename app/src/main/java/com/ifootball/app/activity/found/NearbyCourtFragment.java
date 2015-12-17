@@ -9,18 +9,19 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ifootball.app.R;
+import com.ifootball.app.activity.MapActivity;
 import com.ifootball.app.activity.green.VenueDetailActivity;
 import com.ifootball.app.baseapp.BaseFragment;
 import com.ifootball.app.entity.BizException;
 import com.ifootball.app.entity.found.FoundNearbyCourt;
 import com.ifootball.app.entity.found.FoundRespone;
 import com.ifootball.app.framework.widget.CircleImageView;
+import com.ifootball.app.framework.widget.MyToast;
 import com.ifootball.app.util.ImageLoaderUtil;
 import com.ifootball.app.util.IntentUtil;
 import com.ifootball.app.util.MyAsyncTask;
@@ -30,10 +31,11 @@ import com.neweggcn.lib.json.JsonParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-public class NearbyCourtFragment extends BaseFragment {
+public class NearbyCourtFragment extends BaseFragment implements FoundActivity.OnButtonOnclickListener {
     private static final int pageSize = 10;
     private int pageIndex = 0;
     private View view;
@@ -42,6 +44,7 @@ public class NearbyCourtFragment extends BaseFragment {
 
     private FrameLayout[] frameLayouts = new FrameLayout[11];
     private RelativeLayout parentLayout;
+    private List<FoundNearbyCourt> foundNearbyCourts;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -79,22 +82,10 @@ public class NearbyCourtFragment extends BaseFragment {
     }
 
     private void setAnim() {
-        Animation animation= AnimationUtils.loadAnimation(getActivity(), R.anim.found_img_anim);
-
-        //得到一个LayoutAnimationController对象；
-
-        LayoutAnimationController lac=new LayoutAnimationController(animation);
-
-        //设置控件显示的顺序；
-
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.found_img_anim);
+        LayoutAnimationController lac = new LayoutAnimationController(animation);
         lac.setOrder(LayoutAnimationController.ORDER_RANDOM);
-
-        //设置控件显示间隔时间；
-
-        lac.setDelay(1);
-
-        //为ListView设置LayoutAnimationController属性；
-
+        lac.setDelay((float)0.3);
         parentLayout.setLayoutAnimation(lac);
     }
 
@@ -103,33 +94,11 @@ public class NearbyCourtFragment extends BaseFragment {
         if (!isPrepared || !isVisible || mHasLoadedOnce) {
             return;
         }
+        getData();
 
-        new MyAsyncTask<FoundRespone>(getActivity()) {
-
-            @Override
-            public FoundRespone callService() throws IOException,
-                    JsonParseException, BizException, ServiceException {
-                FoundRespone nearByCourtData = new FoundService().getNearByCourtData(pageIndex, pageSize, 1);
-                if (nearByCourtData != null) {
-                    mHasLoadedOnce = true;
-                    pageIndex = pageIndex + 1;
-                }
-                return nearByCourtData;
-            }
-
-            @Override
-            public void onLoaded(FoundRespone result) throws Exception {
-                if (result != null) {
-                    initView(result.getmFoundNearbyCourt());
-
-                }
-            }
-
-
-        }.execute();
     }
 
-    private void initView(final List<FoundNearbyCourt> foundNearbyCourts) {
+    private void initView() {
         recoverView();
         List random = random();
         for (int i = 0; i < foundNearbyCourts.size(); i++) {
@@ -181,6 +150,46 @@ public class NearbyCourtFragment extends BaseFragment {
             }
         }
         return randomList;
+    }
+
+    @Override
+    public void onMapButtonClick() {
+        HashMap<String, String> map = new HashMap<>();
+        for (FoundNearbyCourt courtInfo : foundNearbyCourts) {
+            map.put(String.valueOf(courtInfo.getLatitude()), String.valueOf(courtInfo.getLongitude()));
+        }
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(MapActivity.COURT_LOCATION, map);
+        IntentUtil.redirectToNextActivity(getActivity(), MapActivity.class, bundle);
+    }
+
+    @Override
+    public void onRefreshButtonClick() {
+        getData();
+    }
+
+    public void getData() {
+        new MyAsyncTask<FoundRespone>(getActivity()) {
+
+            @Override
+            public FoundRespone callService() throws IOException,
+                    JsonParseException, BizException, ServiceException {
+                FoundRespone nearByCourtData = new FoundService().getNearByCourtData(pageIndex, pageSize, 1);
+                if (nearByCourtData != null) {
+                    mHasLoadedOnce = true;
+//                    pageIndex = pageIndex + 1;
+                }
+                return nearByCourtData;
+            }
+
+            @Override
+            public void onLoaded(FoundRespone result) throws Exception {
+                if (result != null) {
+                    foundNearbyCourts = result.getmFoundNearbyCourt();
+                    initView();
+                }
+            }
+        }.execute();
     }
 }
 
