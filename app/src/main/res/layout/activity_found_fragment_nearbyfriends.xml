@@ -1,8 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/frg_nearbyfriend_flayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+<RelativeLayout android:id="@+id/found_nearbyfriend_flayout"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <!--<include
+        layout="@layout/found_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <com.ifootball.app.framework.widget.CircleImageView
+        android:id="@+id/frg_found_center"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/app_icon"/>
+-->
+    <LinearLayout android:id="@+id/friend_one_layout" android:layout_width="60dp"
+                  android:layout_height="50dp"
+                  android:layout_marginLeft="30dp"
+                  android:layout_marginTop="50dp"
+                  android:orientation="vertical">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/friend_one_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/test_rostrum1"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/friend_two_layout" android:layout_width="50dp"
+                  android:layout_height="50dp"
+                  android:layout_alignParentRight="true"
+                  android:layout_marginRight="20dp"
+                  android:layout_marginTop="80dp"
+                  android:orientation="vertical">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/friend_two_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/test_rostrum1"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/friend_three_layout" android:layout_width="50dp"
+                  android:layout_height="50dp"
+                  android:layout_marginRight="40dp"
+                  android:layout_marginTop="30dp"
+                  android:layout_toLeftOf="@id/friend_two_layout"
+                  android:orientation="vertical">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/friend_three_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/test_rostrum1"/>
+
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/friend_four_layout" android:layout_width="70dp"
+                  android:layout_height="90dp"
+                  android:layout_below="@id/friend_three_layout"
+                  android:layout_marginLeft="40dp"
+                  android:layout_marginTop="10dp"
+                  android:layout_toRightOf="@id/friend_one_layout"
+                  android:orientation="vertical">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/friend_four_img"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:src="@mipmap/test_rostrum1"/>
+
+        <TextView
+            android:id="@+id/friend_four_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingTop="2dp"
+            android:textColor="@color/black"
+            android:textSize="10sp"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/friend_five_layout" android:layout_width="70dp"
+                  android:layout_height="90dp"
+                  android:layout_below="@id/friend_four_layout"
+                  android:layout_marginLeft="70dp"
+                  android:layout_marginTop="10dp"
+                  android:orientation="vertical">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/friend_five_img"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:src="@mipmap/test_rostrum1"/>
+
+        <TextView
+            android:id="@+id/friend_five_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingTop="2dp"
+            android:textColor="@color/black"
+            android:textSize="10sp"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/friend_six_layout" android:layout_width="70dp"
+                  android:layout_height="90dp"
+                  android:layout_alignParentRight="true"
+                  android:layout_below="@id/friend_four_layout"
+                  android:layout_marginRight="60dp"
+                  android:layout_marginTop="30dp"
+                  android:orientation="vertical">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/friend_six_img"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:src="@mipmap/test_rostrum1"/>
+
+        <TextView
+            android:id="@+id/friend_six_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingTop="2dp"
+            android:textColor="@color/black"
+            android:textSize="10sp"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/friend_seven_layout" android:layout_width="70dp"
+                  android:layout_height="90dp"
+                  android:layout_alignParentRight="true"
+                  android:layout_below="@id/friend_six_layout"
+                  android:layout_marginRight="30dp"
+                  android:layout_marginTop="50dp"
+                  android:orientation="vertical">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/friend_seven_img"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:src="@mipmap/test_rostrum1"/>
+
+        <TextView
+            android:id="@+id/friend_seven_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingTop="2dp"
+            android:textColor="@color/black"
+            android:textSize="10sp"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/friend_eight_layout" android:layout_width="70dp"
+                  android:layout_height="90dp"
+                  android:layout_below="@id/friend_six_layout"
+                  android:layout_marginRight="70dp"
+                  android:layout_marginTop="90dp"
+                  android:layout_toLeftOf="@id/friend_seven_layout"
+                  android:orientation="vertical">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/friend_eight_img"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:src="@mipmap/test_rostrum1"/>
+
+        <TextView
+            android:id="@+id/friend_eight_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingTop="2dp"
+            android:textColor="@color/black"
+            android:textSize="10sp"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/friend_nine_layout" android:layout_width="70dp"
+                  android:layout_height="90dp"
+                  android:layout_below="@id/friend_five_layout"
+                  android:layout_marginLeft="30dp"
+                  android:layout_marginTop="30dp"
+                  android:orientation="vertical">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/friend_nine_img"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:src="@mipmap/test_rostrum1"/>
+
+        <TextView
+            android:id="@+id/friend_nine_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingTop="2dp"
+            android:textColor="@color/black"
+            android:textSize="10sp"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/friend_ten_layout" android:layout_width="50dp"
+                  android:layout_height="50dp"
+                  android:layout_alignParentBottom="true"
+                  android:layout_marginBottom="40dp"
+                  android:layout_marginLeft="30dp"
+                  android:orientation="vertical">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/friend_ten_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/test_rostrum1"/>
+
+
+    </LinearLayout>
+    <LinearLayout android:id="@+id/friend_eleven_layout" android:layout_width="50dp"
+                  android:layout_height="50dp"
+                  android:layout_alignParentBottom="true"
+                  android:layout_alignParentRight="true"
+                  android:layout_marginBottom="30dp"
+                  android:layout_marginRight="70dp"
+                  android:orientation="vertical">
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/friend_eleven_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/test_rostrum1"/>
+    </LinearLayout>
 
 </RelativeLayout>

@@ -2,8 +2,7 @@
 <RelativeLayout android:id="@+id/found_nearbycourt_flayout"
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layoutAnimation="@anim/layout_anim">
+                android:layout_height="match_parent">
     <FrameLayout android:id="@+id/ball_one_layout" android:layout_width="85dp"
                  android:layout_height="85dp"
                  android:layout_margin="20dp">
@@ -20,7 +19,11 @@
             android:id="@+id/ball_one_tv"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="4"
+            android:textColor="@color/white"/>
     </FrameLayout>
     <FrameLayout android:id="@+id/ball_two_layout" android:layout_width="70dp"
                  android:layout_height="70dp"
@@ -40,7 +43,11 @@
             android:id="@+id/ball_two_tv"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="3"
+            android:textColor="@color/white"/>
     </FrameLayout>
 
     <FrameLayout android:id="@+id/ball_three_layout" android:layout_width="85dp"
@@ -61,7 +68,11 @@
             android:id="@+id/ball_three_tv"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="4"
+            android:textColor="@color/white"/>
     </FrameLayout>
 
     <FrameLayout android:id="@+id/ball_four_layout"
@@ -82,7 +93,11 @@
             android:id="@+id/ball_four_tv"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="4"
+            android:textColor="@color/white"/>
     </FrameLayout>
     <FrameLayout android:id="@+id/ball_five_layout"
                  android:layout_width="85dp"
@@ -103,7 +118,11 @@
             android:id="@+id/ball_five_tv"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="4"
+            android:textColor="@color/white"/>
     </FrameLayout>
     <FrameLayout android:id="@+id/ball_six_layout"
                  android:layout_width="85dp"
@@ -125,7 +144,11 @@
             android:id="@+id/ball_six_tv"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="4"
+            android:textColor="@color/white"/>
     </FrameLayout>
     <FrameLayout android:id="@+id/ball_seven_layout"
                  android:layout_width="85dp"
@@ -147,7 +170,11 @@
             android:id="@+id/ball_seven_tv"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="4"
+            android:textColor="@color/white"/>
     </FrameLayout>
 
 
@@ -171,7 +198,11 @@
             android:id="@+id/ball_eight_tv"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="4"
+            android:textColor="@color/white"/>
     </FrameLayout>
 
     <FrameLayout android:id="@+id/ball_nine_layout"
@@ -194,7 +225,11 @@
             android:id="@+id/ball_nine_tv"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="3"
+            android:textColor="@color/white"/>
     </FrameLayout>
 
     <FrameLayout android:id="@+id/ball_ten_layout"
@@ -216,7 +251,11 @@
             android:id="@+id/ball_ten_tv"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="4"
+            android:textColor="@color/white"/>
     </FrameLayout>
 
     <FrameLayout android:id="@+id/ball_eleven_layout"
@@ -238,7 +277,11 @@
             android:id="@+id/ball_eleven_tv"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="3"
+            android:textColor="@color/white"/>
     </FrameLayout>
 
 

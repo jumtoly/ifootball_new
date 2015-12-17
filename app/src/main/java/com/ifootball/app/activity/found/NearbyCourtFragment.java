@@ -2,20 +2,27 @@ package com.ifootball.app.activity.found;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ifootball.app.R;
+import com.ifootball.app.activity.green.VenueDetailActivity;
 import com.ifootball.app.baseapp.BaseFragment;
 import com.ifootball.app.entity.BizException;
 import com.ifootball.app.entity.found.FoundNearbyCourt;
 import com.ifootball.app.entity.found.FoundRespone;
 import com.ifootball.app.framework.widget.CircleImageView;
 import com.ifootball.app.util.ImageLoaderUtil;
+import com.ifootball.app.util.IntentUtil;
 import com.ifootball.app.util.MyAsyncTask;
 import com.ifootball.app.webservice.ServiceException;
 import com.ifootball.app.webservice.found.FoundService;
@@ -68,7 +75,27 @@ public class NearbyCourtFragment extends BaseFragment {
         frameLayouts[9] = (FrameLayout) view.findViewById(R.id.ball_ten_layout);
         frameLayouts[10] = (FrameLayout) view.findViewById(R.id.ball_eleven_layout);
         parentLayout = (RelativeLayout) view.findViewById(R.id.found_nearbycourt_flayout);
+        recoverView();
+    }
 
+    private void setAnim() {
+        Animation animation= AnimationUtils.loadAnimation(getActivity(), R.anim.found_img_anim);
+
+        //得到一个LayoutAnimationController对象；
+
+        LayoutAnimationController lac=new LayoutAnimationController(animation);
+
+        //设置控件显示的顺序；
+
+        lac.setOrder(LayoutAnimationController.ORDER_RANDOM);
+
+        //设置控件显示间隔时间；
+
+        lac.setDelay(1);
+
+        //为ListView设置LayoutAnimationController属性；
+
+        parentLayout.setLayoutAnimation(lac);
     }
 
     @Override
@@ -102,24 +129,32 @@ public class NearbyCourtFragment extends BaseFragment {
         }.execute();
     }
 
-    private void initView(List<FoundNearbyCourt> foundNearbyCourts) {
+    private void initView(final List<FoundNearbyCourt> foundNearbyCourts) {
         recoverView();
         List random = random();
         for (int i = 0; i < foundNearbyCourts.size(); i++) {
+            Log.d("TEST", random.get(i) + "");
             FrameLayout layout = frameLayouts[((int) random.get(i))];
-            ImageLoaderUtil.displayImage(foundNearbyCourts.get(i).getDefaultPicUrl(), (CircleImageView) layout.getChildAt(0), R.mipmap.app_icon);
-            ((TextView) layout.getChildAt(2)).setText(foundNearbyCourts.get(i).getName());
+            final FoundNearbyCourt foundNearbyCourt = foundNearbyCourts.get(i);
+            ImageLoaderUtil.displayImage(foundNearbyCourt.getDefaultPicUrl(), (CircleImageView) layout.getChildAt(0), R.mipmap.app_icon);
+            ((TextView) layout.getChildAt(2)).setText(foundNearbyCourt.getName());
             layout.setClickable(true);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                 layout.setAlpha(1);
             } else {
                 layout.getBackground().setAlpha(255);
             }
-
-
-//            parentLayout.startLayoutAnimation();
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(VenueDetailActivity.SYSNO, foundNearbyCourt.getSysNo());
+                    IntentUtil.redirectToNextActivity(getActivity(), VenueDetailActivity.class, bundle);
+                }
+            });
 
         }
+        setAnim();
         parentLayout.startLayoutAnimation();
 
     }
@@ -140,7 +175,7 @@ public class NearbyCourtFragment extends BaseFragment {
         List randomList = new ArrayList();  //生成数据集，用来保存随即生成数，并用于判断
         Random rd = new Random();
         while (randomList.size() < 11) {
-            int num = rd.nextInt(12);
+            int num = rd.nextInt(11);
             if (!randomList.contains(num)) {
                 randomList.add(num);  //往集合里面添加数据。
             }

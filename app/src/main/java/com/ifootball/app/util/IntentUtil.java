@@ -32,9 +32,9 @@ public final class IntentUtil {
      * @return
      */
     private static Intent getNewIntent(Context packageContext, Class<?> cls) {
-        Intent intent = new Intent(packageContext, cls);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        return intent;
+       /* Intent intent = new Intent(packageContext, cls);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);*/
+        return new Intent(packageContext, cls);
     }
 
     /**
