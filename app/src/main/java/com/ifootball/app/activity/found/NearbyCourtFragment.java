@@ -21,7 +21,6 @@ import com.ifootball.app.entity.BizException;
 import com.ifootball.app.entity.found.FoundNearbyCourt;
 import com.ifootball.app.entity.found.FoundRespone;
 import com.ifootball.app.framework.widget.CircleImageView;
-import com.ifootball.app.framework.widget.MyToast;
 import com.ifootball.app.util.ImageLoaderUtil;
 import com.ifootball.app.util.IntentUtil;
 import com.ifootball.app.util.MyAsyncTask;
