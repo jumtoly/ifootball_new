@@ -29,9 +29,10 @@ public class BaseApp extends Application {
         startService(new Intent("com.baidu.location.f"));
         Intent intent = new Intent(this, LocationService.class);
         startService(intent);
-        if (mNum == 0) {
+        if (instance == null) {
             instance = this;
-
+        }
+        if (mNum == 0) {
             initImageLoader(this);
             MyFileCache.install(getApplicationContext());
 
