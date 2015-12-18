@@ -3,7 +3,6 @@ package com.ifootball.app.activity.stand;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.baidu.location.LocationClient;
 import com.ifootball.app.R;
 import com.ifootball.app.entity.SettingsUtil;
 import com.ifootball.app.framework.cache.MySharedCache;
@@ -17,7 +16,6 @@ public class StartActivity extends Activity {
     private CountDownTimerUtil mCountDownTimerUtil;
     private static final String FRIST_START_KEY = "FRIST_START";
 
-    private LocationClient mLocationClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
