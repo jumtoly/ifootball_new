@@ -12,7 +12,9 @@ import com.ifootball.app.R;
 import com.ifootball.app.activity.career.CareerActivity;
 import com.ifootball.app.activity.found.FoundActivity;
 import com.ifootball.app.activity.green.GreenActivity;
+import com.ifootball.app.activity.login.LoginActivity;
 import com.ifootball.app.activity.stand.StandActivity;
+import com.ifootball.app.util.CustomerUtil;
 
 public class NavigationHelper {
 
@@ -273,9 +275,13 @@ public class NavigationHelper {
                             Intent.FLAG_ACTIVITY_NO_ANIMATION, 0, 0);
                     break;
                 case R.id.navigation_bar_item_career:
-
-                    redirect(CareerActivity.class,
-                            Intent.FLAG_ACTIVITY_NO_ANIMATION, 0, 0);
+                    if (CustomerUtil.isLogin()) {
+                        redirect(CareerActivity.class,
+                                Intent.FLAG_ACTIVITY_NO_ANIMATION, 0, 0);
+                    } else {
+                        redirect(LoginActivity.class,
+                                Intent.FLAG_ACTIVITY_NO_ANIMATION, 0, 0);
+                    }
                     break;
             }
         }

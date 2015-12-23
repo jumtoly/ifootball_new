@@ -14,7 +14,7 @@ public class RegisterAgreementActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agreement);
+        putContentView(R.layout.activity_agreement, "", true, true);
         TitleBarView view = (TitleBarView) findViewById(R.id.agreement_titlebar);
         view.setViewData(getResources().getDrawable(R.mipmap.ico_backspace),
                 "用户协议", null);

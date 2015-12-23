@@ -160,6 +160,26 @@
                   android:screenOrientation="portrait"
                   android:theme="@style/Theme.NoTitle"
                   android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:name=".activity.login.LoginActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/Theme.NoTitle"
+                  android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:name=".activity.login.RegisterActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/Theme.NoTitle"
+                  android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:name=".activity.login.RegisterAgreementActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/Theme.NoTitle"
+                  android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:name=".activity.login.FindPasswordActivity"
+                  android:configChanges="keyboardHidden|orientation|screenSize"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/Theme.NoTitle"
+                  android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <service android:name=".androidservice.LocationService"/>
 

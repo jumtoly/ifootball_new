@@ -26,12 +26,12 @@ public class BaseApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        startService(new Intent("com.baidu.location.f"));
-        Intent intent = new Intent(this, LocationService.class);
-        startService(intent);
         if (instance == null) {
             instance = this;
         }
+        startService(new Intent("com.baidu.location.f"));
+        Intent intent = new Intent(this, LocationService.class);
+        startService(intent);
         if (mNum == 0) {
             initImageLoader(this);
             MyFileCache.install(getApplicationContext());

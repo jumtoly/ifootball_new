@@ -36,7 +36,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        putContentView(R.layout.activity_register, "", true, true);
         TitleBarView view = (TitleBarView) findViewById(R.id.register_titlebar);
         view.setViewData(getResources().getDrawable(R.mipmap.ico_backspace),
                 "注册", null);

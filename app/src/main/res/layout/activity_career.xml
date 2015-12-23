@@ -4,130 +4,322 @@
                 android:layout_height="match_parent"
                 android:background="@color/bg_color"
                 android:orientation="vertical">
-
-    <RelativeLayout
-        android:id="@+id/activity_career_head_layout"
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:background="@color/career_head_bg_red"
-        android:gravity="center_vertical">
-
-        <com.ifootball.app.framework.widget.CircleImageView
-            android:id="@+id/activity_career_head_circle"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:src="@mipmap/test_rostrum1"/>
-        <TextView android:id="@+id/activity_career_head_name"
-                  android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:layout_below="@id/activity_career_head_circle"
-                  android:layout_centerHorizontal="true"
-                  android:layout_marginTop="10dp"
-                  android:ellipsize="end"
-                  android:maxLines="1"
-                  android:text="你好你好你好你好"
-                  android:textColor="@color/white"
-                  android:textSize="18sp"/>
-        <LinearLayout android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_below="@id/activity_career_head_name"
-                      android:layout_centerHorizontal="true"
-                      android:layout_marginTop="5dp"
-                      android:orientation="horizontal"
-                      android:weightSum="2">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:layout_marginTop="5dp"
-                      android:ellipsize="end"
-                      android:maxLines="1"
-                      android:padding="2dp"
-                      android:text="你好你好你"
-                      android:textColor="@color/white"
-                      android:textSize="14sp"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:layout_marginLeft="5dp"
-                      android:layout_marginTop="5dp"
-                      android:background="@drawable/radius_whiteboder"
-                      android:ellipsize="end"
-                      android:gravity="center"
-                      android:maxLines="1"
-                      android:padding="2dp"
-                      android:text="不好不好"
-                      android:textColor="@color/white"
-                      android:textSize="14sp"/>
-        </LinearLayout>
-
-        <LinearLayout android:id="@+id/activity_career_head_bottom_layout"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:layout_alignParentBottom="true"
-                      android:background="@color/career_head_bottom_bg_red"
-                      android:orientation="horizontal"
-                      android:weightSum="2">
-            <LinearLayout android:layout_width="0dp"
-                          android:layout_height="50dp"
-                          android:layout_weight="1" android:gravity="center"
-                          android:orientation="vertical"
-                          android:padding="8dp"
-                          android:weightSum="2">
-                <TextView android:layout_width="wrap_content" android:layout_height="0dp"
-                          android:layout_weight="1"
-                          android:text="23231"
-                          android:textColor="@color/white"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="0dp"
-                          android:layout_weight="1"
-                          android:text="发布"
-                          android:textColor="@color/white"/>
-            </LinearLayout>
-            <View
-                android:layout_width="1dp"
+    <ScrollView android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignTop="@id/activity_career_head_bottom_layout"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/white_11transparent"/>
-            <LinearLayout android:layout_width="0dp"
-                          android:layout_height="50dp"
-                          android:layout_weight="1" android:gravity="center"
+                android:layout_marginBottom="50dp">
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <RelativeLayout
+                android:id="@+id/activity_career_head_layout"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:background="@color/career_head_bg_red"
+                android:gravity="center_vertical">
+
+                <com.ifootball.app.framework.widget.CircleImageView
+                    android:id="@+id/activity_career_head_circle"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:src="@mipmap/test_rostrum1"/>
+                <TextView android:id="@+id/activity_career_head_name"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_below="@id/activity_career_head_circle"
+                          android:layout_centerHorizontal="true"
+                          android:layout_marginTop="10dp"
+                          android:ellipsize="end"
+                          android:maxLines="1"
+                          android:textColor="@color/white"
+                          android:textSize="18sp"/>
+                <LinearLayout android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_below="@id/activity_career_head_name"
+                              android:layout_centerHorizontal="true"
+                              android:layout_marginTop="5dp"
+                              android:orientation="horizontal"
+                              android:weightSum="2">
+                    <TextView
+                        android:id="@+id/activity_career_head_position"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"/>
+                    <TextView android:id="@+id/activity_career_head_call"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_marginLeft="5dp"
+                              android:layout_marginTop="5dp"
+                              android:background="@drawable/radius_whiteboder"
+                              android:ellipsize="end"
+                              android:gravity="center"
+                              android:maxLines="1"
+                              android:padding="2dp"
+                              android:text="传奇巨星"
+                              android:textColor="@color/white"
+                              android:textSize="14sp"/>
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/activity_career_head_bottom_layout"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_alignParentBottom="true"
+                              android:background="@color/career_head_bottom_bg_red"
+                              android:orientation="horizontal"
+                              android:weightSum="2">
+                    <LinearLayout android:layout_width="0dp"
+                                  android:layout_height="50dp"
+                                  android:layout_weight="1" android:gravity="center"
+                                  android:orientation="vertical"
+                                  android:padding="8dp"
+                                  android:weightSum="2">
+                        <TextView android:id="@+id/activity_career_head_bottom_topic"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="0dp"
+                                  android:layout_weight="1"
+                                  android:textColor="@color/white"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="0dp"
+                                  android:layout_weight="1"
+                                  android:text="发布"
+                                  android:textColor="@color/white"/>
+                    </LinearLayout>
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignTop="@id/activity_career_head_bottom_layout"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white_11transparent"/>
+                    <LinearLayout android:layout_width="0dp"
+                                  android:layout_height="50dp"
+                                  android:layout_weight="1" android:gravity="center"
+                                  android:orientation="vertical"
+                                  android:padding="8dp"
+                                  android:weightSum="2">
+                        <TextView android:id="@+id/activity_career_head_bottom_friend"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="0dp"
+                                  android:layout_weight="1"
+                                  android:textColor="@color/white"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="0dp"
+                                  android:layout_weight="1"
+                                  android:text="好友"
+                                  android:textColor="@color/white"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignTop="@id/activity_career_head_bottom_layout"
+                    android:background="@color/white_33transparent"/>
+            </RelativeLayout>
+            <LinearLayout android:id="@+id/activity_career_describe_layout"
+                          android:layout_width="match_parent" android:layout_height="50dp"
+                          android:layout_below="@id/activity_career_head_layout"
+                          android:background="@color/white"
                           android:orientation="vertical"
-                          android:padding="8dp"
-                          android:weightSum="2">
-                <TextView android:layout_width="wrap_content" android:layout_height="0dp"
-                          android:layout_weight="1"
-                          android:text="23231"
-                          android:textColor="@color/white"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="0dp"
-                          android:layout_weight="1"
-                          android:text="好友"
-                          android:textColor="@color/white"/>
+                          android:paddingLeft="10dp">
+                <TextView android:id="@+id/activity_career_describe_tv"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_marginTop="5dp" android:text="@string/career_describe"/>
+                <TextView android:id="@+id/activity_career_describe_place"
+                          android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:layout_marginTop="5dp"
+                          android:drawableLeft="@mipmap/ico_sign"
+                          android:drawablePadding="5dp"
+                          android:text="四川·成都"
+                          android:textColor="@color/career_local_font_gray"
+                          android:textSize="12sp"/>
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/activity_career_frist_layout"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_below="@id/activity_career_describe_layout"
+                          android:layout_marginTop="10dp"
+                          android:background="@color/white"
+                          android:orientation="vertical">
+                <RelativeLayout android:id="@+id/activity_career_record_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:drawableLeft="@mipmap/ico_mine1"
+                              android:drawablePadding="8dp"
+                              android:gravity="center_vertical"
+                              android:padding="10dp"
+                              android:text="个人档案"
+                              android:textSize="16sp"/>
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_alignParentRight="true"
+                               android:layout_centerVertical="true"
+                               android:padding="10dp"
+                               android:src="@mipmap/ico_goto"/>
+                </RelativeLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                      android:background="@color/line_gray"/>
+                <RelativeLayout
+                    android:id="@+id/activity_career_trend_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:drawableLeft="@mipmap/ico_mine2"
+                              android:drawablePadding="8dp"
+                              android:gravity="center_vertical"
+                              android:padding="10dp"
+                              android:text="我的动态"
+                              android:textSize="16sp"/>
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_alignParentRight="true"
+                               android:layout_centerVertical="true"
+                               android:padding="10dp"
+                               android:src="@mipmap/ico_goto"/>
+                </RelativeLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                      android:background="@color/line_gray"/>
+                <RelativeLayout
+                    android:id="@+id/activity_career_friend_trend_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+                    <TextView android:id="@+id/career_btn_list_three_tv"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:drawableLeft="@mipmap/ico_mine3"
+                              android:drawablePadding="8dp"
+                              android:gravity="center_vertical"
+                              android:paddingBottom="10dp"
+                              android:paddingLeft="10dp"
+                              android:paddingTop="10dp"
+                              android:text="好友列表"
+                              android:textSize="16sp"/>
+                    <ImageView android:id="@+id/career_btn_list_three_goto"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_alignParentRight="true"
+                               android:layout_centerVertical="true"
+                               android:padding="10dp"
+                               android:src="@mipmap/ico_goto"/>
+                    <ImageView
+                        android:id="@+id/activity_career_friend_trend_red_point"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/career_btn_list_three_tv"
+                        android:paddingTop="10dp"
+                        android:src="@mipmap/banner_dot02"/>
+                    <TextView
+                        android:id="@+id/activity_career_friend_trend_remind"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@id/career_btn_list_three_goto"
+                        android:text="您有新的好友请求"
+                        android:textColor="@color/career_font_gray"
+                        android:textSize="14sp"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_below="@id/activity_career_frist_layout"
+                          android:layout_marginTop="10dp"
+                          android:background="@color/white"
+                          android:orientation="vertical">
+                <RelativeLayout
+                    android:id="@+id/activity_career_change_password_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:drawableLeft="@mipmap/ico_mine4"
+                              android:drawablePadding="8dp"
+                              android:gravity="center_vertical"
+                              android:padding="10dp"
+                              android:text="修改密码"
+                              android:textSize="16sp"/>
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_alignParentRight="true"
+                               android:layout_centerVertical="true"
+                               android:padding="10dp"
+                               android:src="@mipmap/ico_goto"/>
+                </RelativeLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                      android:background="@color/line_gray"/>
+                <RelativeLayout
+                    android:id="@+id/activity_career_about_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:drawableLeft="@mipmap/ico_mine5"
+                              android:drawablePadding="8dp"
+                              android:gravity="center_vertical"
+                              android:padding="10dp"
+                              android:text="关于i踢球"
+                              android:textSize="16sp"/>
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:layout_alignParentRight="true"
+                               android:layout_centerVertical="true"
+                               android:padding="10dp"
+                               android:src="@mipmap/ico_goto"/>
+                </RelativeLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                      android:background="@color/line_gray"/>
+                <RelativeLayout
+                    android:id="@+id/activity_career_setting_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/ico_mine6"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:text="设置"
+                        android:textSize="16sp"/>
+
+                </RelativeLayout>
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                      android:background="@color/line_gray"/>
+                <RelativeLayout
+                    android:id="@+id/activity_career_quit_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/ico_mine7"
+                        android:drawablePadding="8dp"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:text="退出"
+                        android:textSize="16sp"/>
+                </RelativeLayout>
+                <View android:layout_width="match_parent"
+                      android:layout_height="10dp" android:background="@color/bg_color"/>
             </LinearLayout>
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_alignTop="@id/activity_career_head_bottom_layout"
-            android:background="@color/white_33transparent"/>
-    </RelativeLayout>
-    <LinearLayout android:layout_width="match_parent" android:layout_height="50dp"
-                  android:layout_below="@id/activity_career_head_layout"
-                  android:background="@color/white"
-                  android:orientation="vertical"
-                  android:paddingLeft="10dp">
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:layout_marginTop="5dp" android:text="@string/career_describe"/>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:layout_marginTop="5dp"
-                  android:drawableLeft="@mipmap/ico_sign"
-                  android:drawablePadding="5dp"
-                  android:text="四川·成都"
-                  android:textSize="12sp"/>
-    </LinearLayout>
-
+    </ScrollView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
-
         <include layout="@layout/frm_navigation_bar"/>
     </LinearLayout>
 

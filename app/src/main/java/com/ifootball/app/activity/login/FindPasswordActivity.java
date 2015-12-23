@@ -34,10 +34,9 @@ public class FindPasswordActivity extends BaseActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_findpassword);
+        putContentView(R.layout.activity_findpassword, "", true, true);
         TitleBarView view = (TitleBarView) findViewById(R.id.findpassword_titlebar);
-        view.setViewData(getResources().getDrawable(R.mipmap.ico_backspace),
-                "找回密码", null);
+        view.setViewData(getResources().getDrawable(R.mipmap.ico_backspace), "找回密码", null);
         view.setActivity(this);
 
         findView();
