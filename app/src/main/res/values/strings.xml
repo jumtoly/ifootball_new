@@ -37,5 +37,6 @@
     <string name="max_img">最多只能添加%1$s张</string>
     <string name="nearby_friends">附近球友</string>
     <string name="nearby_ball">附近球场</string>
+    <string name="career_describe">i球龄%1$s，获得%1$s次助攻，送出%1$s次助攻</string>
 
 </resources>

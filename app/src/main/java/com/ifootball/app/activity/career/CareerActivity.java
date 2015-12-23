@@ -12,8 +12,7 @@ public class CareerActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        putContentView(R.layout.activity_career, "", NavigationHelper.CAREER,
-                true, true);
+        putContentView(R.layout.activity_career, "", NavigationHelper.CAREER, true, true);
     }
 
     @Override

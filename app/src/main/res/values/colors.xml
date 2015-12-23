@@ -2,7 +2,7 @@
 <resources>
 
     <color name="white">#FFFFFF</color>
-    <color name="red_transparent">#77C40000</color>
+    <color name="red_77transparent">#77C40000</color>
     <color name="black">#000000</color>
     <color name="gray">#989898</color>
     <color name="blue">#2fa6de</color>
@@ -32,5 +32,11 @@
     <color name="circle_line_bg1">#393a3f43</color>
     <color name="circle_line_bg2">#303a3f43</color>
     <color name="circle_line_bg3">#203a3f43</color>
+
+    <!--career-->
+    <color name="white_33transparent">#33FFFFFF</color>
+    <color name="white_11transparent">#11FFFFFF</color>
+    <color name="career_head_bg_red">#DF4F4F</color>
+    <color name="career_head_bottom_bg_red">#EEC94747</color>
 
 </resources>
