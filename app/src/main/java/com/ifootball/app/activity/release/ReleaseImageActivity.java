@@ -31,6 +31,7 @@ import com.ifootball.app.activity.base.BaseActivity;
 import com.ifootball.app.activity.stand.SeeImageActivity;
 import com.ifootball.app.entity.release.ImageFloder;
 import com.ifootball.app.framework.adapter.release.Photo2DAdapter;
+import com.ifootball.app.framework.widget.MyToast;
 import com.ifootball.app.framework.widget.TitleBarView;
 import com.ifootball.app.framework.widget.release.ListImageDirPopupWindow;
 import com.ifootball.app.framework.widget.release.ListImageDirPopupWindow.OnImageDirSelected;
@@ -79,6 +80,9 @@ public class ReleaseImageActivity extends BaseActivity implements
     private int mScreenHeight;
     public static int picCount;
 
+    private boolean isNoPic;
+
+
     private ListImageDirPopupWindow mListImageDirPopupWindow;
 
     private Handler mHandler = new Handler() {
@@ -96,6 +100,7 @@ public class ReleaseImageActivity extends BaseActivity implements
      */
     private void data2View() {
         if (mImgDir == null) {
+            isNoPic = true;
             Toast.makeText(getApplicationContext(), "一张图片没扫描到",
                     Toast.LENGTH_SHORT).show();
             mAdapter = new Photo2DAdapter(getApplicationContext(), mImgs,
@@ -103,7 +108,7 @@ public class ReleaseImageActivity extends BaseActivity implements
             mGirdView.setAdapter(mAdapter);
             return;
         }
-
+        isNoPic = false;
         mImgs = Arrays.asList(mImgDir.list());
         Collections.reverse(mImgs);
         /**
@@ -235,8 +240,7 @@ public class ReleaseImageActivity extends BaseActivity implements
                 mCursor.close();
 
                 // 扫描完成，辅助的HashSet也就可以释放内存了
-                mDirPaths = null;
-
+//                mDirPaths = null;
                 // 通知Handler扫描图片完成
                 mHandler.sendEmptyMessage(0x110);
 
@@ -266,6 +270,10 @@ public class ReleaseImageActivity extends BaseActivity implements
         mBottomLy.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (isNoPic) {
+                    MyToast.show(ReleaseImageActivity.this, "没有扫描到任何图片");
+                    return;
+                }
                 mListImageDirPopupWindow
                         .setAnimationStyle(R.style.anim_popup_dir);
                 mListImageDirPopupWindow.showAsDropDown(mBottomLy, 0, 0);
@@ -321,6 +329,10 @@ public class ReleaseImageActivity extends BaseActivity implements
                             long id) {
         if (position == 0) {
             SysCamera();
+        } else {
+            Bundle bundle = new Bundle();
+            bundle.putStringArrayList(SeeImageActivity.SIGN_STAND_IMAGES, (ArrayList<String>) mImgs);
+            IntentUtil.redirectToNextActivity(this, SeeImageActivity.class);
         }
 
     }
@@ -382,6 +394,13 @@ public class ReleaseImageActivity extends BaseActivity implements
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDirPaths = null;
+        mImageFloders = null;
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -389,11 +408,13 @@ public class ReleaseImageActivity extends BaseActivity implements
 
             case RESULT_OK: // 拍照成功回调
                 if (CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE == requestCode) {
-                    Bundle bundle = new Bundle();
+                    getImages();
+                    initEvent();
+                   /* Bundle bundle = new Bundle();
                     bundle.putString(SeeImageActivity.SIGN_CAMERA_POSITION, fileUri
                             .toString().substring(7, fileUri.toString().length()));
                     IntentUtil.redirectToNextActivity(this, SeeImageActivity.class,
-                            bundle);
+                            bundle);*/
                 }
             case RESULT_CANCELED:// 用户取消的拍照
 

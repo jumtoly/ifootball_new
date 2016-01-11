@@ -28,6 +28,7 @@ import java.util.List;
 
 public class StandActivity extends BaseActivity implements OnClickListener,
         OnPageChangeListener {
+    public static final int FROM_IMAGE_ACTIVITY = 101;
     private static final int ROSTRUM = 0;
     private static final int NEARBY = 1;
     private static final int NEWS = 2;
@@ -186,8 +187,10 @@ public class StandActivity extends BaseActivity implements OnClickListener,
                 switch (item) {
                     case 0:
                         //TODO 图片activity
-                        IntentUtil.redirectToNextActivity(StandActivity.this,
-                                ReleaseImageActivity.class);
+                        IntentUtil.redirectToSubActivity(StandActivity.this,
+                                ReleaseImageActivity.class, FROM_IMAGE_ACTIVITY);
+                        /*IntentUtil.redirectToNextActivity(StandActivity.this,
+                                ReleaseImageActivity.class);*/
                         break;
 
                     case 1:

@@ -1,7 +1,9 @@
 package com.ifootball.app.framework.adapter.release;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -9,8 +11,10 @@ import android.widget.Toast;
 
 import com.ifootball.app.R;
 import com.ifootball.app.activity.release.ReleaseImageActivity;
+import com.ifootball.app.activity.stand.SeeImageActivity;
 import com.ifootball.app.framework.widget.release.ViewHolder;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,12 +29,15 @@ public class Photo2DAdapter extends CommonAdapter<String> {
      */
     private String mDirPath;
     private Context mContext;
+    private ArrayList<String> mPicDatas = new ArrayList<>();
 
-    public Photo2DAdapter(Context context, List<String> mDatas,
-                          int itemLayoutId, String dirPath) {
+    public Photo2DAdapter(Context context, List<String> mDatas, int itemLayoutId, String dirPath) {
         super(context, mDatas, itemLayoutId);
         this.mDirPath = dirPath;
         this.mContext = context;
+        for (String str : mDatas) {
+            this.mPicDatas.add(mDirPath + "/" + str);
+        }
     }
 
     @Override
@@ -88,6 +95,19 @@ public class Photo2DAdapter extends CommonAdapter<String> {
                         mSelect.setImageResource(R.mipmap.pictures_selected);
                         mImageView.setColorFilter(Color.parseColor("#77000000"));
                     }
+                }
+            });
+            mImageView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Bundle bundle = new Bundle();
+                    bundle.putStringArrayList(SeeImageActivity.SIGN_CAMERA_REQUEST_DATA, mPicDatas);
+                    Intent intent = new Intent(mContext, SeeImageActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                    intent.putExtra(SeeImageActivity.CAMERA_IMG, bundle);
+                    mContext.startActivity(intent);
+
                 }
             });
 

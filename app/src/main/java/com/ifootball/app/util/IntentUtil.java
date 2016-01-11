@@ -18,34 +18,26 @@ import android.os.Bundle;
 /**
  * This class is used to switch between pages including "From Main to Sub" ,
  * "From Sub to Main" and "From One to Another" modes.
- *
  */
 public final class IntentUtil {
 
     /**
      * get simple new intent
      *
-     * @param packageContext
-     *            this current page
-     * @param cls
-     *            the target page
+     * @param packageContext this current page
+     * @param cls            the target page
      * @return
      */
     private static Intent getNewIntent(Context packageContext, Class<?> cls) {
-       /* Intent intent = new Intent(packageContext, cls);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);*/
         return new Intent(packageContext, cls);
     }
 
     /**
      * get simple new intent with bundle data
      *
-     * @param packageContext
-     *            this current page
-     * @param cls
-     *            the target page
-     * @param bundle
-     *            the parameter data
+     * @param packageContext this current page
+     * @param cls            the target page
+     * @param bundle         the parameter data
      * @return
      */
     private static Intent getBundleIntent(Context packageContext, Class<?> cls, Bundle bundle) {
@@ -55,10 +47,8 @@ public final class IntentUtil {
     /**
      * redirect to next page
      *
-     * @param packageContext
-     *            this current page
-     * @param cls
-     *            the target page
+     * @param packageContext this current page
+     * @param cls            the target page
      */
     public static void redirectToNextActivity(Context packageContext, Class<?> cls) {
         packageContext.startActivity(getNewIntent(packageContext, cls));
@@ -66,18 +56,13 @@ public final class IntentUtil {
 
     /**
      * Single String value as a parameter of the activity-oriented switching
-     * <p>
+     * <p/>
      * get parameter method intent.getExtras();
      *
-     * @param packageContext
-     *            current Context (xxx.this or this)
-     * @param cls
-     *            target (xxx.class)
-     * @param onlyKey
-     *            The Bundle of extras to add to this intent
-     * @param correspondingValue
-     *            String value as parameter
-     *
+     * @param packageContext     current Context (xxx.this or this)
+     * @param cls                target (xxx.class)
+     * @param onlyKey            The Bundle of extras to add to this intent
+     * @param correspondingValue String value as parameter
      */
     public static void redirectToNextActivity(Context packageContext, Class<?> cls, String onlyKey,
                                               String correspondingValue) {
@@ -87,12 +72,9 @@ public final class IntentUtil {
     /**
      * redirect to next page with parameter data
      *
-     * @param packageContext
-     *            this current page
-     * @param cls
-     *            the target page
-     * @param bundle
-     *            the parameter data
+     * @param packageContext this current page
+     * @param cls            the target page
+     * @param bundle         the parameter data
      */
     public static void redirectToNextActivity(Context packageContext, Class<?> cls, Bundle bundle) {
         packageContext.startActivity(getBundleIntent(packageContext, cls, bundle));
@@ -101,10 +83,8 @@ public final class IntentUtil {
     /**
      * redirect to next page with new task mode
      *
-     * @param packageContext
-     *            this current page
-     * @param cls
-     *            the target page
+     * @param packageContext this current page
+     * @param cls            the target page
      */
     public static void redirectToNextNewActivity(Context packageContext, Class<?> cls) {
 
@@ -115,12 +95,9 @@ public final class IntentUtil {
     /**
      * redirect to next page with new task mode
      *
-     * @param packageContext
-     *            this current page
-     * @param cls
-     *            the target page
-     * @param bundle
-     *            the parameter
+     * @param packageContext this current page
+     * @param cls            the target page
+     * @param bundle         the parameter
      */
     public static void redirectToNextNewActivity(Context packageContext, Class<?> cls, Bundle bundle) {
 
@@ -131,12 +108,9 @@ public final class IntentUtil {
     /**
      * redirect to main page from sub page
      *
-     * @param packageContext
-     *            this current page
-     * @param cls
-     *            the target page
-     * @param resultCode
-     *            the result code from target page to response to some request.
+     * @param packageContext this current page
+     * @param cls            the target page
+     * @param resultCode     the result code from target page to response to some request.
      */
     public static void redirectToMainActivity(Context packageContext, Class<?> cls, int resultCode) {
         final Activity tempActivity = (Activity) packageContext;
@@ -147,14 +121,10 @@ public final class IntentUtil {
     /**
      * redirect to main page from sub page with data
      *
-     * @param packageContext
-     *            this current page
-     * @param cls
-     *            the target page
-     * @param bundle
-     *            the parameter
-     * @param resultCode
-     *            the result code from sub page
+     * @param packageContext this current page
+     * @param cls            the target page
+     * @param bundle         the parameter
+     * @param resultCode     the result code from sub page
      */
     public static void redirectToMainActivity(Context packageContext, Class<?> cls, Bundle bundle, int resultCode) {
         final Activity tempActivity = (Activity) packageContext;
@@ -165,12 +135,9 @@ public final class IntentUtil {
     /**
      * redirect to sub page from main page
      *
-     * @param packageContext
-     *            this current page
-     * @param cls
-     *            the target page
-     * @param requestCode
-     *            the request code from main page
+     * @param packageContext this current page
+     * @param cls            the target page
+     * @param requestCode    the request code from main page
      */
     public static void redirectToSubActivity(Context packageContext, Class<?> cls, int requestCode) {
 
@@ -181,14 +148,10 @@ public final class IntentUtil {
     /**
      * redirect to sub page from main page
      *
-     * @param packageContext
-     *            this current page
-     * @param cls
-     *            the target page
-     * @param bundle
-     *            the parameter
-     * @param requestCode
-     *            the request code from main page
+     * @param packageContext this current page
+     * @param cls            the target page
+     * @param bundle         the parameter
+     * @param requestCode    the request code from main page
      */
     public static void redirectToSubActivity(Context packageContext, Class<?> cls, Bundle bundle, int requestCode) {
         final Activity tempActivity = (Activity) packageContext;

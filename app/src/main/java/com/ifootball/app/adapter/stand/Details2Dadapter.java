@@ -231,13 +231,11 @@ public class Details2Dadapter extends BaseAdapter {
                         @Override
                         public void onItemClick(AdapterView<?> parent,
                                                 View view, int position, long id) {
-                            Intent intent = new Intent(mContext,
-                                    SeeImageActivity.class);
+                            Intent intent = new Intent(mContext, SeeImageActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putInt(SIGN_DETAILS_POSITION, position);
                             bundle.putSerializable(SIGN_DETAILS_IMAGES,
-                                    (ArrayList<PictureInfo>) mUserDetailsInfo
-                                            .getPicUrls());
+                                    (ArrayList<PictureInfo>) mUserDetailsInfo.getPicUrls());
                             intent.putExtra(SIGN_DETAILS_BUNDLE, bundle);
                             mContext.startActivity(intent);
                             ((Activity) mContext).overridePendingTransition(

@@ -13,6 +13,7 @@ import android.view.ViewGroup.LayoutParams;
 import com.ifootball.app.R;
 import com.ifootball.app.entity.release.PictureInfo;
 import com.ifootball.app.framework.widget.HackyViewPager;
+import com.ifootball.app.framework.widget.release.ImageLoader;
 import com.ifootball.app.util.ImageLoaderUtil;
 
 import java.util.ArrayList;
@@ -25,9 +26,10 @@ public class SeeImageActivity extends Activity {
     public static final String SIGN_CAMERA_POSITION = "SIGN_CAMERA_POSITION";
     private static final String ISLOCKED_ARG = "isLocked";
     public static final int REQUEST_SIGN = 201;
-    private static final String SIGN_CAMERA_REQUEST_DATA = "SIGN_CAMERA_REQUEST_DATA";
+    public static final String SIGN_CAMERA_REQUEST_DATA = "SIGN_CAMERA_REQUEST_DATA";
     public static final String SIGN_STAND_POSITION = "SIGN_STAND_POSITION";
     public static final String SIGN_STAND_IMAGES = "SIGN_STAND_IMAGES";
+    public static final String CAMERA_IMG = "CAMERA_IMG";
 
 
     private ViewPager mViewPager;
@@ -44,7 +46,9 @@ public class SeeImageActivity extends Activity {
     private int mPosition;
 
     private ArrayList<String> mPics;
+    private ArrayList<String> mCameraPics;
     private ArrayList<PictureInfo> mPictures; //是详情页面发过来的预览图
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,7 @@ public class SeeImageActivity extends Activity {
         mPosition = getIntent().getIntExtra(SIGN_STAND_POSITION, 0);
 //        mPics = getIntent().getStringArrayExtra(SIGN_CAMERA_POSITION);
         mPics = (ArrayList<String>) getIntent().getSerializableExtra(SIGN_STAND_IMAGES);
+        mCameraPics = getIntent().getBundleExtra(CAMERA_IMG).getStringArrayList(SIGN_CAMERA_REQUEST_DATA);
     }
 
     class SamplePagerAdapter extends PagerAdapter {
@@ -79,9 +84,12 @@ public class SeeImageActivity extends Activity {
 
         @Override
         public int getCount() {
-
-            return mPics != null ? mPics.size()
-                    : (mPictures != null ? mPictures.size() : 0);
+            if (mCameraPics != null) {
+                return mCameraPics.size();
+            } else {
+                return mPics != null ? mPics.size()
+                        : (mPictures != null ? mPictures.size() : 0);
+            }
         }
 
         @Override
@@ -93,7 +101,10 @@ public class SeeImageActivity extends Activity {
                     displayMetrics.heightPixels);
             photoView.setLayoutParams(params);
             //TODO 拍照后的图片显示
-//            ImageLoader.getInstance().loadImage(mPics.get(0), photoView);
+//
+            if (mCameraPics != null && mCameraPics.size() > 0) {
+                ImageLoader.getInstance().loadImage(mCameraPics.get(position), photoView);
+            }
             if (mPics != null && mPics.size() > 0) {
                 ImageLoaderUtil.displayImage(
                         mPics.get(position).replace("p200", "Original"),
