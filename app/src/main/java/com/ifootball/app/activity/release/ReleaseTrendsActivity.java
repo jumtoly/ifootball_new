@@ -4,6 +4,8 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
@@ -121,6 +123,7 @@ public class ReleaseTrendsActivity extends BaseActivity implements
         mShareVideo.setVisibility(View.GONE);
         mShareImages.setVisibility(View.VISIBLE);
         mSharePicUrls.add("");
+        mSharePicUrls.addAll(0, getIntent().getStringArrayListExtra("SELECT_IMAGES"));
         mAdatpter = new ReleaseTrends2DAdapter(this, mSharePicUrls);
         mShareImages.setAdapter(mAdatpter);
     }
@@ -135,6 +138,8 @@ public class ReleaseTrendsActivity extends BaseActivity implements
         mSelectLocation = (TextView) findViewById(R.id.main_release_trends_address);
         mProgress = (ProgressBar) findViewById(R.id.release_trends_progress);
         mProgress.setVisibility(View.GONE);
+
+        mShareImages.setSelector(new ColorDrawable(Color.TRANSPARENT));
 
         mShareImages.setOnItemClickListener(this);
         mShareImages.setOnScrollListener(this);
@@ -508,7 +513,7 @@ public class ReleaseTrendsActivity extends BaseActivity implements
 
         switch (resultCode) {
             case PHOTO:
-                if (data.getStringArrayListExtra("SELECT_IMAGES").isEmpty()) {
+                if (data.getStringArrayListExtra("SELECT_IMAGESSELECT_IMAGESSELECT_IMAGES").isEmpty()) {
                     return;
                 }
                 mSharePicUrls.addAll(0,

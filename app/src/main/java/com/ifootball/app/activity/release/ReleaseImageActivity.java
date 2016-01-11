@@ -152,6 +152,16 @@ public class ReleaseImageActivity extends BaseActivity implements
         view.setViewData(getResources().getDrawable(R.mipmap.ico_backspace),
                 "图片", getResources().getDrawable(R.mipmap.ico_submit));
         view.setActivity(this);
+        view.setRightClick(new TitleBarView.TitleBarViewRightIconClick() {
+            @Override
+            public void onClick() {
+                Bundle bundle = new Bundle();
+                bundle.putStringArrayList(ReleaseTrendsActivity.SELECT_IMAGES, Photo2DAdapter.mSelectedImage);
+                IntentUtil.redirectToNextActivity(ReleaseImageActivity.this, ReleaseTrendsActivity.class, bundle);
+            }
+        });
+
+
         picCount = getIntent().getIntExtra(PICTOTAL, 0);
 
         DisplayMetrics outMetrics = new DisplayMetrics();

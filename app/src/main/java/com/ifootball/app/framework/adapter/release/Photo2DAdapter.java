@@ -15,14 +15,13 @@ import com.ifootball.app.activity.stand.SeeImageActivity;
 import com.ifootball.app.framework.widget.release.ViewHolder;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Photo2DAdapter extends CommonAdapter<String> {
     /**
      * 用户选择的图片，存储为图片的完整路径
      */
-    public static List<String> mSelectedImage = new LinkedList<>();
+    public static ArrayList<String> mSelectedImage = new ArrayList<>();
 
     /**
      * 文件夹路径
