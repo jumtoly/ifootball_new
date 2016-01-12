@@ -23,13 +23,16 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.ifootball.app.R;
 import com.ifootball.app.activity.base.BaseActivity;
+import com.ifootball.app.entity.release.ReleaseSelectAddress;
 import com.ifootball.app.framework.adapter.release.ReleaseTrends2DAdapter;
 import com.ifootball.app.framework.widget.TitleBarView;
+import com.ifootball.app.util.IntentUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -57,8 +60,8 @@ public class ReleaseTrendsActivity extends BaseActivity implements
     private EditText mShareContent;
     private GridView mShareImages;
     private VideoView mShareVideo;
-    private View mSelectAddress;
-    private View mShareToFriend;
+    private RelativeLayout mSelectAddress;
+    private RelativeLayout mShareToFriend;
     private int mGridLastVisibleItem;
     private LinkedList<String> mSharePicUrls = new LinkedList<>();
     private Uri fileUri;
@@ -131,8 +134,8 @@ public class ReleaseTrendsActivity extends BaseActivity implements
     private void findView() {
         mShareContent = (EditText) findViewById(R.id.main_release_trends_shareContent);
         mShareImages = (GridView) findViewById(R.id.main_release_trends_shareImages);
-        mSelectAddress = findViewById(R.id.main_release_trends_selectAddress);
-        mShareToFriend = findViewById(R.id.main_release_trends_shareToFriend);
+        mSelectAddress = (RelativeLayout) findViewById(R.id.main_release_trends_selectAddress);
+        mShareToFriend = (RelativeLayout) findViewById(R.id.main_release_trends_shareToFriend);
         mSubmit = (ImageView) mTitleBar.findViewById(R.id.title_right_icon);
         mShareVideo = (VideoView) findViewById(R.id.main_release_trends_shareVid);
         mSelectLocation = (TextView) findViewById(R.id.main_release_trends_address);
@@ -160,8 +163,9 @@ public class ReleaseTrendsActivity extends BaseActivity implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.main_release_trends_selectAddress:// 选择地点
-            /*Intent intent = new Intent(this, SelectAddressActivity.class);
-            startActivityForResult(intent, ADDRESS);*/
+                IntentUtil.redirectToSubActivity(this, SelectAddressActivity.class, ADDRESS);
+                /*Intent intent = new Intent(this, SelectAddressActivity.class);
+                startActivityForResult(intent, ADDRESS);*/
                 break;
             case R.id.main_release_trends_shareToFriend:// 分享好友
 
@@ -540,11 +544,12 @@ public class ReleaseTrendsActivity extends BaseActivity implements
             case RESULT_FIRST_USER:// 拍照失败
                 break;
             case ADDRESS:// 选择地点
-            /*if (data.getSerializableExtra("ADDRESS").equals("")) {
-                return;
-			}
-			mSelectLocation.setText(((ReleaseSelectAddress) data
-					.getSerializableExtra("ADDRESS")).getLocationName());*/
+                ReleaseSelectAddress selectAddress = (ReleaseSelectAddress) data
+                        .getSerializableExtra(SelectAddressActivity.ADDRESS);
+                if ("".equals(selectAddress)) {
+                    return;
+                }
+                mSelectLocation.setText(selectAddress.getLocationName());
                 break;
             default:
                 break;

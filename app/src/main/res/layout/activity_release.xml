@@ -68,7 +68,8 @@
                 android:id="@+id/main_release_trends_selectAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white">
+                android:background="@color/white"
+                android:clickable="true">
 
                 <TextView
                     android:id="@+id/main_release_trends_address"

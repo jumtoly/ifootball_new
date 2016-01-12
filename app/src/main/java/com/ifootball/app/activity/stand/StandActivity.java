@@ -18,7 +18,6 @@ import android.widget.ImageView;
 
 import com.ifootball.app.R;
 import com.ifootball.app.activity.base.BaseActivity;
-import com.ifootball.app.activity.release.ReleaseImageActivity;
 import com.ifootball.app.framework.widget.NavigationHelper;
 import com.ifootball.app.util.ExitAppUtil;
 import com.ifootball.app.util.IntentUtil;
@@ -187,10 +186,12 @@ public class StandActivity extends BaseActivity implements OnClickListener,
                 switch (item) {
                     case 0:
                         //TODO 图片activity
-                        IntentUtil.redirectToSubActivity(StandActivity.this,
-                                ReleaseImageActivity.class, FROM_IMAGE_ACTIVITY);
+                       /* IntentUtil.redirectToSubActivity(StandActivity.this,
+                                ReleaseImageActivity.class, FROM_IMAGE_ACTIVITY);*/
                         /*IntentUtil.redirectToNextActivity(StandActivity.this,
                                 ReleaseImageActivity.class);*/
+                        IntentUtil.redirectToNextActivity(StandActivity.this,
+                                MainActivity.class);
                         break;
 
                     case 1:

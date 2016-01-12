@@ -1,31 +1,32 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     android:id="@+id/select_address_main_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-    <com.ifootball.app.activity.view.TitleBarView
+    <com.ifootball.app.framework.widget.TitleBarView
         android:id="@+id/main_selcet_address_titlebar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
-        <com.ifootball.app.activity.view.HeaderFooterListView
+        <ListView
             android:id="@+id/main_selcet_address_listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="#00000000"
-            android:dividerHeight="1dp" />
+            android:divider="@android:color/transparent"
+            android:dividerHeight="1dp"/>
 
         <ProgressBar
             android:id="@+id/main_selcet_address_progress"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"/>
     </FrameLayout>
 
 </LinearLayout>
