@@ -46,8 +46,7 @@ public class StandPage2DAdapter extends MyDecoratedAdapter<StandInfo> {
     public StandPage2DAdapter(Context currentContext) {
         super(currentContext);
         this.mContext = currentContext;
-        this.mInflater = (LayoutInflater) currentContext
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.mInflater = (LayoutInflater) currentContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 

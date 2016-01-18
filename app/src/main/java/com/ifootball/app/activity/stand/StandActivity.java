@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.ifootball.app.R;
+import com.ifootball.app.activity.MainActivity;
 import com.ifootball.app.activity.base.BaseActivity;
 import com.ifootball.app.framework.widget.NavigationHelper;
 import com.ifootball.app.util.ExitAppUtil;
@@ -25,8 +26,7 @@ import com.ifootball.app.util.IntentUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StandActivity extends BaseActivity implements OnClickListener,
-        OnPageChangeListener {
+public class StandActivity extends BaseActivity implements OnClickListener, OnPageChangeListener {
     public static final int FROM_IMAGE_ACTIVITY = 101;
     private static final int ROSTRUM = 0;
     private static final int NEARBY = 1;
@@ -192,6 +192,7 @@ public class StandActivity extends BaseActivity implements OnClickListener,
                                 ReleaseImageActivity.class);*/
                         IntentUtil.redirectToNextActivity(StandActivity.this,
                                 MainActivity.class);
+
                         break;
 
                     case 1:

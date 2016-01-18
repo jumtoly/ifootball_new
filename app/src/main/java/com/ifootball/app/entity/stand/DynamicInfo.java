@@ -24,6 +24,10 @@ public class DynamicInfo implements HasPageInfo, HasCollection<StandInfo>, Seria
         return standInfos;
     }
 
+    public List<StandInfo> getStandInfos() {
+        return standInfos;
+    }
+
     @Override
     public PageInfo getPageInfo() {
         return pageInfo;
